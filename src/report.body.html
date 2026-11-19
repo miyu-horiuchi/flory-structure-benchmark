@@ -1,0 +1,101 @@
+<div id="root"></div>
+<script type="text/jsx">
+document.title = "Flory protein–ligand structure benchmark";
+const models = data.models;
+const primary = data.cells.filter(c => c.tier === "primary");
+const diagnostics = data.cells.filter(c => c.tier !== "primary");
+const targets = Object.keys(data.target_names);
+const fmt = (v,n=2) => v === null || v === undefined ? "—" : Number(v).toFixed(n);
+const modelName = id => models.find(m => m.id === id)?.name || id;
+const chosen = new Set(data.cells.map(c => `${c.model}|${c.case}|${c.selected_sample}`));
+const title = r => r.case === "AURKA_WT126_389_APO" ? "AURKA · WT apo" : r.case === "AURKA_WT126_389_VX680" ? "AURKA · WT + VX-680" : `${data.target_names[r.target]} · ${r.case.split("_")[1]}`;
+function Heading({children}) {return <Text as="h2" size={17} weight="semibold" className="mb-3">{children}</Text>;}
+function Paragraph({as="p",...props}) {return <Text as={as} {...props}/>;}
+function Report() {
+  const Text = Paragraph;
+  const [model,setModel] = useState("all");
+  const [target,setTarget] = useState("all");
+  const [scope,setScope] = useState("primary");
+  const [view,setView] = useState("selected");
+  const [detail,setDetail] = useState(null);
+  const [sort,setSort] = useState(null);
+  const shown = useMemo(() => {
+    const rows = data.samples.filter(r => (scope === "all" || (scope === "primary" ? r.tier === "primary" : r.tier !== "primary")) && (model === "all" || r.model === model) && (target === "all" || r.target === target) && (view === "all" || chosen.has(`${r.model}|${r.case}|${r.sample}`)));
+    return sort ? rows.sort((a,b) => ((a.ligand_rmsd_receptor_aligned_a ?? 1e6) - (b.ligand_rmsd_receptor_aligned_a ?? 1e6))*sort) : rows;
+  },[model,target,scope,view,sort]);
+  return <PageLayout themeToggle>
+    <section className="border border-primary bg-tint-blue rounded-lg p-4">
+      <Text size={17} weight="semibold">Takeaway: Chai-1 and ESMFold2 were most consistent for ligand pose and chemistry here; Protenix was close behind. This does not establish accurate partner-chain placement, dynamics or which model will fine-tune best.</Text>
+    </section>
+    <section className="space-y-4">
+      <Text as="h1" size={28} weight="semibold">Seven protein–ligand models, four targets</Text>
+      <Text className="text-secondary">Flory stream 2 · Executed 18 November 2026 · Structure-only qualification before MD-based fine-tuning</Text>
+      <Text className="text-secondary">All seven implementations ran successfully, but plausible poses did not always preserve the supplied chemistry. This is a retrospective screen of public complexes—not a held-out leaderboard, a functional-state benchmark or a demonstration of fine-tuning.</Text>
+      <StatsRow>
+        <StatCard label="Model–target cells"><StatCardValue>{primary.length}</StatCardValue><StatCardCaption>{models.length} models × {targets.length} targets</StatCardCaption></StatCard>
+        <StatCard label="Primary structures scored"><StatCardValue>{data.samples.filter(r=>r.tier==="primary").length}</StatCardValue><StatCardCaption>Five samples per cell; seed 42</StatCardCaption></StatCard>
+        <StatCard label="Separate Aurora diagnostics"><StatCardValue>{data.samples.filter(r=>r.tier!=="primary").length}</StatCardValue><StatCardCaption>WT apo / WT + VX-680</StatCardCaption></StatCard>
+      </StatsRow>
+    </section>
+
+    <section className="space-y-3">
+      <Heading>Pose accuracy and chemical fidelity are different tests</Heading>
+      <Text size={13} className="text-secondary">Selected ligand heavy-atom RMSD in Å after receptor alignment; no ligand-only fit. Shading is the combined screen, not RMSD alone. The small line reports passing samples from all five outputs.</Text>
+      <Table stickyFirstColumn wrapText><TableHeader><TableRow><TableHead>Model</TableHead>{targets.map(t=><TableHead key={t}>{data.target_names[t]}</TableHead>)}<TableHead>Selected pass / 4</TableHead><TableHead>All pass / 20</TableHead></TableRow></TableHeader>
+        <TableBody>{models.map(m=><TableRow key={m.id}><TableCell><ExternalLink href={m.url}>{m.name}</ExternalLink></TableCell>{targets.map(t=>{const c=primary.find(c=>c.model===m.id&&c.target===t);return <TableCell key={t} className={c.selected_clean_hit?"bg-tint-green":"bg-tint-red"}><Text weight="semibold">{fmt(c.selected_ligand_rmsd_a)}</Text><Text size={11} className="text-secondary">{c.clean_hits}/5 pass{c.wrong_chirality_samples?` · stereo flags ${c.wrong_chirality_samples}`:""}</Text></TableCell>;})}<TableCell>{m.selected_clean_cells}</TableCell><TableCell>{m.clean_samples}</TableCell></TableRow>)}</TableBody>
+      </Table>
+      <Text size={12} className="text-secondary">Combined screen: RMSD &lt; 2 Å, lDDT-PLI-style &gt; 0.8, no wrong specified ligand stereocentres, and no ligand–protein pairs within 0.60 × summed van der Waals radii. Not full physicality certification. Native confidence selects outputs except ESMFold2’s declared iPTM rule and BioEmu-2 sample 0. Native scales are not compared across models.</Text>
+    </section>
+
+    <section className="space-y-3">
+      <Heading>What changed the interpretation</Heading>
+      <div className="border-l-2 border-primary pl-4 space-y-3">
+        <div><Text weight="semibold">Glucose anomer, not just pose</Text><Text size={13} className="text-secondary">Boltz-2 and RF3 changed the supplied GLC C1 stereocentre in every GCK sample despite sub-Å RMSD. This is an α/β-anomer mismatch—not evidence of a different sugar or an incorrect functional effect. BioEmu-2 also has two glucose stereo flags.</Text></div>
+        <div><Text weight="semibold">Native Aurora exposes BioEmu-2 context sensitivity</Text><Text size={13} className="text-secondary">All five pThr288 + TPX2 outputs have poor receptor and ligand geometry despite correct chain correspondence and pThr attachment. The separate unphosphorylated WT / no-TPX2 diagnostic is much closer to its starting reference. These coupled input changes do not isolate the cause.</Text></div>
+        <div><Text weight="semibold">An ERK2 threshold miss is not an entire model verdict</Text><Text size={13} className="text-secondary">OpenBind-0’s selected ERK2 ligand is just beyond 2 Å. Inspect its protein, pocket, stereo and confidence results separately before drawing a broader conclusion.</Text></div>
+      </div>
+    </section>
+
+    <section className="space-y-3">
+      <Heading>Inspect every prediction</Heading>
+      <div className="flex flex-wrap items-center gap-3">
+        <SimpleSelect value={scope} onValueChange={setScope} options={[{value:"primary",label:"Primary complexes"},{value:"diagnostic",label:"Aurora diagnostics"},{value:"all",label:"Both scopes"}]}/>
+        <SimpleSelect value={model} onValueChange={setModel} options={[{value:"all",label:"All models"},...models.map(m=>({value:m.id,label:m.name}))]}/>
+        <SimpleSelect value={target} onValueChange={setTarget} options={[{value:"all",label:"All targets"},...targets.map(t=>({value:t,label:data.target_names[t]}))]}/>
+        <SimpleSelect value={view} onValueChange={setView} options={[{value:"selected",label:"Selected outputs"},{value:"all",label:"All five samples"}]}/>
+        <Text size={12} className="text-secondary">{shown.length} rows</Text>
+      </div>
+      <Table stickyHeader stickyFirstColumn viewportClassName="max-h-96" scrollOrientation="both"><TableHeader><TableRow><TableHead>Model / complex</TableHead><TableHead>Sample</TableHead><SortableTableHead sort={sort===null?undefined:sort===1?"asc":"desc"} onSort={()=>setSort(sort===1?-1:1)}>Ligand RMSD Å</SortableTableHead><TableHead>Receptor Cα Å</TableHead><TableHead>Pocket Å</TableHead><TableHead>lDDT-PLI-style</TableHead><TableHead>Stereo</TableHead><TableHead>Severe pairs</TableHead><TableHead>Evidence</TableHead></TableRow></TableHeader>
+        <TableBody>{shown.map(r=><TableRow key={`${r.model}|${r.case}|${r.sample}`}><TableCell><Text size={13}>{modelName(r.model)}</Text><Text size={11} className="text-secondary">{title(r)}</Text></TableCell><TableCell>{r.sample}</TableCell><TableCell>{fmt(r.ligand_rmsd_receptor_aligned_a)}</TableCell><TableCell>{fmt(r.receptor_ca_rmsd_a)}</TableCell><TableCell>{fmt(r.pocket_heavy_rmsd_receptor_aligned_a)}</TableCell><TableCell>{fmt(r.lddt_pli_style_ref15a,3)}</TableCell><TableCell>{r.stereochemistry_matches_input===null||r.stereochemistry_matches_input===undefined?"Not specified":r.stereochemistry_matches_input?"Retained":"Mismatch"}</TableCell><TableCell>{r.ligand_protein_vdw060_pairs??"—"}</TableCell><TableCell><Button size="sm" variant="secondary" onClick={()=>setDetail(r)}>Details</Button></TableCell></TableRow>)}</TableBody>
+      </Table>
+      {!shown.length&&<Text size={13}>No matching predictions. Aurora diagnostics are available only for AURKA.</Text>}
+      {detail&&<Card><CardContent><CardBody><div className="flex justify-between items-center mb-3"><Text weight="semibold">{modelName(detail.model)} · {title(detail)} · sample {detail.sample}</Text><Button size="sm" variant="ghost" onClick={()=>setDetail(null)}>Close</Button></div><Text size={12} className="text-secondary mb-2">The exact CIF and SHA-256 locate this structure in the archive. Missing confidence is not invented.</Text><CodeBlock code={JSON.stringify({cif:detail.file,sha256:detail.sha256,ranking_metric:detail.ranking_metric||"First sample; no native confidence rank",confidence:detail.confidence_scalars||"Not provided",combined_screen:detail.clean_screen_hit,chain_assignment:detail.chain_assignment,pThr_attachment:detail.modification_checks,stereocentres:detail.stereocentre_cip_comparison,bond_length_outliers:detail.ligand_bond_length_outliers},null,2)}/></CardBody></CardContent></Card>}
+    </section>
+
+    <section className="space-y-3">
+      <Heading>Partner placement is a separate outcome</Heading>
+      <Text size={13} className="text-secondary">The ligand screen does not require accurate placement of every partner. Values below are selected partner Cα RMSD after receptor alignment; matching a sequence is not proof of correct geometry. Flexible linkers and crystal packing affect observed SRC-1 segments. PPARγ was rescored against deposited assembly 2 (B+C): the initial A+C reference pairing was a preparation error, not a model failure. A/B have identical canonical sequences, so all input hashes and inference outputs are unchanged.</Text>
+      <Table><TableHeader><TableRow><TableHead>Model</TableHead><TableHead>PPARγ / SRC-1 Å</TableHead><TableHead>AURKA / TPX2 Å</TableHead></TableRow></TableHeader><TableBody>{models.map(m=><TableRow key={m.id}><TableCell>{m.name}</TableCell>{["PPARG","AURKA"].map(t=><TableCell key={t}>{fmt(data.partners.find(p=>p.model===m.id&&p.target===t).rmsd_a)}</TableCell>)}</TableRow>)}</TableBody></Table>
+      <Heading>Diversity and resource use</Heading>
+      <Text size={13} className="text-secondary">Geometric spreads are means of all ten sample pairs, averaged over the four primary cases. Ligand spread uses a common receptor reference frame and includes pocket-placement differences—not only internal conformation. Spread is not a state population or rate.</Text>
+      <Table><TableHeader><TableRow><TableHead>Model</TableHead><TableHead>Ligand spread Å</TableHead><TableHead>Receptor Cα spread Å</TableHead><TableHead>Median wall s</TableHead><TableHead>Wall range s</TableHead><TableHead>Sampled GPU peak GiB</TableHead></TableRow></TableHeader><TableBody>{models.map(m=>{const cs=primary.filter(c=>c.model===m.id);return <TableRow key={m.id}><TableCell>{m.name}</TableCell><TableCell>{fmt(cs.reduce((a,c)=>a+c.pairwise_ligand_rmsd_mean_a,0)/cs.length)}</TableCell><TableCell>{fmt(cs.reduce((a,c)=>a+c.pairwise_receptor_ca_rmsd_mean_a,0)/cs.length)}</TableCell><TableCell>{fmt(m.native_wall_median_s,1)}</TableCell><TableCell>{fmt(m.native_wall_min_s,1)}–{fmt(m.native_wall_max_s,1)}</TableCell><TableCell>{fmt(m.gpu_peak_gib)}</TableCell></TableRow>;})}</TableBody></Table>
+      <Text size={12} className="text-secondary">Each job requested A100 80 GB, 8 CPUs and 64 GiB RAM; observed PCIe and SXM4 variants differ. Wall includes startup, I/O, any downloads/JIT, but excludes image builds and queueing. GPU memory is total use sampled every 0.5 s; host peak RAM was not measured. Native schedules differ. Primary jobs total {fmt(data.primary_wall_hours)} requested GPU-wall hours—not a controlled kernel-speed ranking or a dollar invoice.</Text>
+    </section>
+
+    <CollapsibleRoot><CollapsibleTrigger><Text size={17} weight="semibold">Aurora WT diagnostics — not experimental accuracy totals</Text></CollapsibleTrigger><CollapsiblePanel><div className="pt-4 space-y-3"><Text size={13}>Human WT residues 126–389; unphosphorylated Thr288; no TPX2; VX-680 +1 or no ligand. References are prepared MD starting coordinates, not experimental observations or equilibrium ensembles. No starting coordinates were supplied to the models.</Text><Table><TableHeader><TableRow><TableHead>Model</TableHead><TableHead>Holo ligand Å</TableHead><TableHead>Holo receptor Cα Å</TableHead><TableHead>Apo receptor Cα Å</TableHead><TableHead>Apo Cα spread Å</TableHead></TableRow></TableHeader><TableBody>{models.map(m=>{const h=diagnostics.find(c=>c.model===m.id&&c.case==="AURKA_WT126_389_VX680"),a=diagnostics.find(c=>c.model===m.id&&c.case==="AURKA_WT126_389_APO");return <TableRow key={m.id}><TableCell>{m.name}</TableCell><TableCell>{fmt(h.selected_ligand_rmsd_a)}</TableCell><TableCell>{fmt(h.selected_receptor_ca_rmsd_a)}</TableCell><TableCell>{fmt(a.selected_receptor_ca_rmsd_a)}</TableCell><TableCell>{fmt(a.pairwise_receptor_ca_rmsd_mean_a)}</TableCell></TableRow>;})}</TableBody></Table></div></CollapsiblePanel></CollapsibleRoot>
+
+    <CollapsibleRoot><CollapsibleTrigger><Text size={17} weight="semibold">Protocol, provenance and fine-tuning readiness</Text></CollapsibleTrigger><CollapsiblePanel><div className="pt-4 space-y-4">
+      <Text size={13}>Coordinate-free sequence/chemical inputs; no templates, pocket constraints or initial-pose conditioning. Common frozen unpaired MSAs: exact query first, deduplicated, at most 1,024 rows. Native recycling/diffusion schedules; five samples and seed 42. Accuracy uses observed matched experimental residues; clashes use all predicted protein heavy atoms.</Text>
+      <Table><TableHeader><TableRow><TableHead>Target</TableHead><TableHead>Experimental reference / retained context</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>PPARγ</TableCell><TableCell><ExternalLink href="https://www.rcsb.org/structure/2PRG">2PRG</ExternalLink> · assembly 2: B + SRC-1 C · B-bound BRL</TableCell></TableRow><TableRow><TableCell>GCK</TableCell><TableCell><ExternalLink href="https://www.rcsb.org/structure/3IDH">3IDH</ExternalLink> · A · GLC; potassium excluded</TableCell></TableRow><TableRow><TableCell>AURKA</TableCell><TableCell><ExternalLink href="https://www.rcsb.org/structure/3E5A">3E5A</ExternalLink> · A + TPX2 B · VX6 · pThr288</TableCell></TableRow><TableRow><TableCell>ERK2</TableCell><TableCell><ExternalLink href="https://www.rcsb.org/structure/4QTA">4QTA</ExternalLink> · A · SCH772984 / 38Z; additives excluded</TableCell></TableRow></TableBody></Table>
+      <Text size={13}>Global sequence correspondence precedes proper-rotation receptor Cα alignment. Ligand heavy-atom element/connectivity graph isomorphism handles atom naming and symmetry. Pocket radius: 6 Å. lDDT-PLI-style: tolerances 0.5, 1, 2 and 4 Å on reference contacts below 15 Å; not certified identical to external OpenBind scoring. Chirality, severe contacts, pThr attachment and bond-length sanity checks do not replace full strain, planarity, charge or functional validation.</Text>
+      <Table wrapText><TableHeader><TableRow><TableHead>Model / code revision</TableHead><TableHead>Code licence label</TableHead><TableHead>Checkpoint</TableHead><TableHead>Adaptation — not tested here</TableHead></TableRow></TableHeader><TableBody>{models.map(m=><TableRow key={m.id}><TableCell><ExternalLink href={m.url}>{m.name}</ExternalLink><Text size={11} className="text-secondary">{m.code_commit}</Text></TableCell><TableCell>{m.licence}</TableCell><TableCell>{m.checkpoint}</TableCell><TableCell>{m.training}</TableCell></TableRow>)}</TableBody></Table>
+      <Text size={13}>Keep the strongest structural controls, then apply the same small gradient-update, checkpoint-save and reload qualification to candidates. Protenix v1 and OpenFold3 have the clearest previously documented starting routes; this screen does not identify a proven fine-tuning winner.</Text><Text size={12} className="text-secondary">The archive includes exact source/licence hashes, cached checkpoint SHA-256 values, native commands, package freezes and CIFs. Weights and credentials are not redistributed. A source licence label is not blanket commercial clearance for all weights, datasets and dependencies.</Text>
+    </div></CollapsiblePanel></CollapsibleRoot>
+
+    <CollapsibleRoot><CollapsibleTrigger><Text size={17} weight="semibold">Observed setup failures and fallbacks</Text></CollapsibleTrigger><CollapsiblePanel><div className="pt-4 space-y-3"><Table wrapText><TableHeader><TableRow><TableHead>Implementation</TableHead><TableHead>Initial issue</TableHead><TableHead>Repair / fallback</TableHead></TableRow></TableHeader><TableBody>{data.incidents.map((r,i)=><TableRow key={i}><TableCell>{r.model}</TableCell><TableCell>{r.issue}</TableCell><TableCell>{r.resolution}</TableCell></TableRow>)}</TableBody></Table><Text size={12} className="text-secondary">Original inference attempts and controller logs are retained. Build failures are not counted as generated structures. UNK-ligand and confidence-filename audit fixes were evaluator issues, not model failures. Identity, rigid-transform, atom-renaming, reflected-ligand and confidence-association regression tests guard the measurements.</Text></div></CollapsiblePanel></CollapsibleRoot>
+
+    <Footnote>Sources: frozen RCSB structures and CCD definitions, pinned upstream implementations and archived native inference outputs. Four public cases may overlap training; one seed and five samples do not justify broad accuracy rankings. No new MD, fine-tuning, affinity prediction, calibrated rates, free energies or functional validation. BioEmu-2 uses structure-prediction mode, not equilibrium sampling or propagation. Prepared diagnostic starts are not experimental ground truth.</Footnote>
+  </PageLayout>;
+}
+render(<Report/>);
+</script>
