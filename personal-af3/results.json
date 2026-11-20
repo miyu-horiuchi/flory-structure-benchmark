@@ -1,0 +1,2788 @@
+{
+  "notice": "This information is subject to AlphaFold Server Output Terms of Use found at https://alphafoldserver.com/output-terms",
+  "scope": "Personal, non-commercial exploratory comparison; separate from the original seven-model Flory benchmark. Not company research or a clean input-matched leaderboard.",
+  "model": {
+    "id": "alphafold3_server",
+    "name": "AlphaFold 3 (Server)",
+    "url": "https://alphafoldserver.com/"
+  },
+  "cells": [
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "generated_samples": 5,
+      "scored_samples": 5,
+      "selected_sample": 0,
+      "selected_ranking_score": 0.97,
+      "selected_evaluation_status": "scored",
+      "selected_clean_hit": true,
+      "clean_hits": 5,
+      "geometry_hits": 5,
+      "wrong_chirality_samples": 0,
+      "selected_ligand_rmsd_a": 1.3987321590218587,
+      "selected_pocket_rmsd_a": 1.0939080023153736,
+      "selected_lddt_pli_style": 0.8645958773110434,
+      "selected_partner_ca_rmsd_a": 24.233549034725783,
+      "selected_receptor_ca_rmsd_a": 1.1490559112109502,
+      "selected_bond_outliers": 0,
+      "phosphorylation_retained_samples": 0,
+      "evaluation_errors": [],
+      "incomplete_ligand_samples": 0,
+      "best_of_five_ligand_rmsd_a": 1.3374101859946108,
+      "mean_ligand_rmsd_a": 1.3782258737966615,
+      "min_ligand_rmsd_a": 1.3374101859946108,
+      "max_ligand_rmsd_a": 1.449219907836804,
+      "pairwise_ligand_rmsd_mean_a": 0.18033285281909722,
+      "pairwise_ligand_rmsd_max_a": 0.26023343175028396,
+      "pairwise_receptor_ca_rmsd_mean_a": 0.18980872269825222,
+      "pairwise_receptor_ca_rmsd_max_a": 0.2488141500012759
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "generated_samples": 5,
+      "scored_samples": 0,
+      "selected_sample": 0,
+      "selected_ranking_score": 0.95,
+      "selected_evaluation_status": "evaluation_error",
+      "selected_clean_hit": false,
+      "clean_hits": 0,
+      "geometry_hits": 0,
+      "wrong_chirality_samples": 0,
+      "selected_ligand_rmsd_a": null,
+      "selected_pocket_rmsd_a": null,
+      "selected_lddt_pli_style": null,
+      "selected_partner_ca_rmsd_a": null,
+      "selected_receptor_ca_rmsd_a": null,
+      "selected_bond_outliers": null,
+      "phosphorylation_retained_samples": 0,
+      "evaluation_errors": [
+        "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+        "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+        "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+        "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+        "No chemically corresponding ligand found; heavy-atom counts or connectivity differ"
+      ],
+      "incomplete_ligand_samples": 5
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "generated_samples": 5,
+      "scored_samples": 5,
+      "selected_sample": 0,
+      "selected_ranking_score": 0.97,
+      "selected_evaluation_status": "scored",
+      "selected_clean_hit": true,
+      "clean_hits": 5,
+      "geometry_hits": 5,
+      "wrong_chirality_samples": 0,
+      "selected_ligand_rmsd_a": 0.9308964658035536,
+      "selected_pocket_rmsd_a": 3.4424764939733357,
+      "selected_lddt_pli_style": 0.8477239645361916,
+      "selected_partner_ca_rmsd_a": 1.8045042829664304,
+      "selected_receptor_ca_rmsd_a": 1.01610459326753,
+      "selected_bond_outliers": 0,
+      "phosphorylation_retained_samples": 5,
+      "evaluation_errors": [],
+      "incomplete_ligand_samples": 0,
+      "best_of_five_ligand_rmsd_a": 0.6394939950050078,
+      "mean_ligand_rmsd_a": 0.7269390660188721,
+      "min_ligand_rmsd_a": 0.6394939950050078,
+      "max_ligand_rmsd_a": 0.9308964658035536,
+      "pairwise_ligand_rmsd_mean_a": 0.38440208140767956,
+      "pairwise_ligand_rmsd_max_a": 0.5497553783090325,
+      "pairwise_receptor_ca_rmsd_mean_a": 0.22691621701237366,
+      "pairwise_receptor_ca_rmsd_max_a": 0.2655964153688257
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "generated_samples": 5,
+      "scored_samples": 5,
+      "selected_sample": 0,
+      "selected_ranking_score": 0.98,
+      "selected_evaluation_status": "scored",
+      "selected_clean_hit": true,
+      "clean_hits": 3,
+      "geometry_hits": 5,
+      "wrong_chirality_samples": 0,
+      "selected_ligand_rmsd_a": 0.47591683596602374,
+      "selected_pocket_rmsd_a": 0.7845411900933136,
+      "selected_lddt_pli_style": 0.9530139785445595,
+      "selected_partner_ca_rmsd_a": null,
+      "selected_receptor_ca_rmsd_a": 1.0766920624998442,
+      "selected_bond_outliers": 0,
+      "phosphorylation_retained_samples": 0,
+      "evaluation_errors": [],
+      "incomplete_ligand_samples": 0,
+      "best_of_five_ligand_rmsd_a": 0.4733245654167406,
+      "mean_ligand_rmsd_a": 0.5630859888908943,
+      "min_ligand_rmsd_a": 0.4733245654167406,
+      "max_ligand_rmsd_a": 0.6823995974436947,
+      "pairwise_ligand_rmsd_mean_a": 0.20494399359310772,
+      "pairwise_ligand_rmsd_max_a": 0.30402025013186973,
+      "pairwise_receptor_ca_rmsd_mean_a": 0.283349106311811,
+      "pairwise_receptor_ca_rmsd_max_a": 0.39811604758696434
+    }
+  ],
+  "samples": [
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "sample": 0,
+      "file": "outputs/PPARG_2PRG_BRL/fold_personal_pparg_2prg_brl_model_0.cif",
+      "sha256": "3e1c9e87c975c03419c3cd3f021ae9340616aa347b1193c4671c333f0ec9954f",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.82,
+          0.88
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.86,
+            0.97
+          ],
+          [
+            0.86,
+            0.23,
+            0.78
+          ],
+          [
+            0.97,
+            0.78,
+            0.45
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.15,
+            0.94
+          ],
+          [
+            1.15,
+            0.76,
+            1.83
+          ],
+          [
+            1.21,
+            2.76,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.23,
+          0.45
+        ],
+        "fraction_disordered": 0.25,
+        "has_clash": 0.0,
+        "iptm": 0.86,
+        "ptm": 0.8,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": true,
+      "chemical_input_comparison": {
+        "sample": 0,
+        "ccd": "BRL",
+        "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 25,
+        "exported_heavy_atoms": 25,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1490559112109502,
+      "aligned_receptor_residues": 246,
+      "chain_assignment": [
+        {
+          "reference": "B",
+          "prediction": "A",
+          "matched_residues": 246
+        },
+        {
+          "reference": "C",
+          "prediction": "B",
+          "matched_residues": 32
+        }
+      ],
+      "matched_protein_heavy_atoms": 2235,
+      "partner_ca_rmsd_receptor_aligned_a": 24.233549034725783,
+      "ligand_rmsd_receptor_aligned_a": 1.3987321590218587,
+      "ligand_heavy_atoms": 25,
+      "ligand_symmetry_mappings": 2,
+      "ligand_centroid_distance_a": 0.7600567296606235,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.0939080023153736,
+      "pocket_matched_heavy_atoms": 127,
+      "lddt_pli_style_ref15a": 0.8645958773110434,
+      "lddt_pli_matched_pairs": 14117,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.376004419187807,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 10,
+          "expected": "S",
+          "observed": "S"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.856756349363208,
+      "ligand_bond_length_max_covalent_ratio": 1.0155122593508987,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "sample": 1,
+      "file": "outputs/PPARG_2PRG_BRL/fold_personal_pparg_2prg_brl_model_1.cif",
+      "sha256": "98ce67ebbc3f8887ab4d087b049aa248cd40a8e3d08f45437d7a4bce38311cb1",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.83,
+          0.88
+        ],
+        "chain_pair_iptm": [
+          [
+            0.92,
+            0.86,
+            0.97
+          ],
+          [
+            0.86,
+            0.27,
+            0.79
+          ],
+          [
+            0.97,
+            0.79,
+            0.46
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.16,
+            0.93
+          ],
+          [
+            1.09,
+            0.76,
+            1.73
+          ],
+          [
+            1.23,
+            2.67,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.92,
+          0.27,
+          0.46
+        ],
+        "fraction_disordered": 0.21,
+        "has_clash": 0.0,
+        "iptm": 0.87,
+        "ptm": 0.8,
+        "ranking_score": 0.96
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.96,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 1,
+        "ccd": "BRL",
+        "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 25,
+        "exported_heavy_atoms": 25,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1609440873524013,
+      "aligned_receptor_residues": 246,
+      "chain_assignment": [
+        {
+          "reference": "B",
+          "prediction": "A",
+          "matched_residues": 246
+        },
+        {
+          "reference": "C",
+          "prediction": "B",
+          "matched_residues": 32
+        }
+      ],
+      "matched_protein_heavy_atoms": 2235,
+      "partner_ca_rmsd_receptor_aligned_a": 38.662089079698795,
+      "ligand_rmsd_receptor_aligned_a": 1.3485863803710987,
+      "ligand_heavy_atoms": 25,
+      "ligand_symmetry_mappings": 2,
+      "ligand_centroid_distance_a": 0.6942545394055365,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.2768441522964065,
+      "pocket_matched_heavy_atoms": 127,
+      "lddt_pli_style_ref15a": 0.8704398951618616,
+      "lddt_pli_matched_pairs": 14117,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.5944907014672514,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 10,
+          "expected": "S",
+          "observed": "S"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8595430317141658,
+      "ligand_bond_length_max_covalent_ratio": 1.0146692845086063,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "sample": 2,
+      "file": "outputs/PPARG_2PRG_BRL/fold_personal_pparg_2prg_brl_model_2.cif",
+      "sha256": "8d8fda34848fc0cb98e0358332fec00032df541bfab831e9c46051c1694b0601",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.82,
+          0.87
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.85,
+            0.97
+          ],
+          [
+            0.85,
+            0.26,
+            0.78
+          ],
+          [
+            0.97,
+            0.78,
+            0.45
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.26,
+            0.94
+          ],
+          [
+            1.15,
+            0.76,
+            1.81
+          ],
+          [
+            1.23,
+            2.88,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.26,
+          0.45
+        ],
+        "fraction_disordered": 0.19,
+        "has_clash": 0.0,
+        "iptm": 0.86,
+        "ptm": 0.8,
+        "ranking_score": 0.95
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.95,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 2,
+        "ccd": "BRL",
+        "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 25,
+        "exported_heavy_atoms": 25,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1489180478895051,
+      "aligned_receptor_residues": 246,
+      "chain_assignment": [
+        {
+          "reference": "B",
+          "prediction": "A",
+          "matched_residues": 246
+        },
+        {
+          "reference": "C",
+          "prediction": "B",
+          "matched_residues": 32
+        }
+      ],
+      "matched_protein_heavy_atoms": 2235,
+      "partner_ca_rmsd_receptor_aligned_a": 37.71728430200023,
+      "ligand_rmsd_receptor_aligned_a": 1.3374101859946108,
+      "ligand_heavy_atoms": 25,
+      "ligand_symmetry_mappings": 2,
+      "ligand_centroid_distance_a": 0.7256820549655684,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.0575723866334044,
+      "pocket_matched_heavy_atoms": 127,
+      "lddt_pli_style_ref15a": 0.8685627257915988,
+      "lddt_pli_matched_pairs": 14117,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.545865864494828,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 10,
+          "expected": "S",
+          "observed": "S"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8563362907691787,
+      "ligand_bond_length_max_covalent_ratio": 1.0154515220476104,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "sample": 3,
+      "file": "outputs/PPARG_2PRG_BRL/fold_personal_pparg_2prg_brl_model_3.cif",
+      "sha256": "2553c5d731cdf7ca284a31b058e8d02bd805ea440b74b2eeb450caeaff4e7b5a",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.82,
+          0.88
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.86,
+            0.97
+          ],
+          [
+            0.86,
+            0.27,
+            0.79
+          ],
+          [
+            0.97,
+            0.79,
+            0.45
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.18,
+            0.94
+          ],
+          [
+            1.08,
+            0.76,
+            1.74
+          ],
+          [
+            1.24,
+            2.8,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.27,
+          0.45
+        ],
+        "fraction_disordered": 0.16,
+        "has_clash": 0.0,
+        "iptm": 0.87,
+        "ptm": 0.8,
+        "ranking_score": 0.94
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.94,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 3,
+        "ccd": "BRL",
+        "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 25,
+        "exported_heavy_atoms": 25,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.119447296918011,
+      "aligned_receptor_residues": 246,
+      "chain_assignment": [
+        {
+          "reference": "B",
+          "prediction": "A",
+          "matched_residues": 246
+        },
+        {
+          "reference": "C",
+          "prediction": "B",
+          "matched_residues": 32
+        }
+      ],
+      "matched_protein_heavy_atoms": 2235,
+      "partner_ca_rmsd_receptor_aligned_a": 38.03099393683304,
+      "ligand_rmsd_receptor_aligned_a": 1.449219907836804,
+      "ligand_heavy_atoms": 25,
+      "ligand_symmetry_mappings": 2,
+      "ligand_centroid_distance_a": 0.8419198587129711,
+      "pocket_heavy_rmsd_receptor_aligned_a": 0.9931426344247621,
+      "pocket_matched_heavy_atoms": 127,
+      "lddt_pli_style_ref15a": 0.8642239852659913,
+      "lddt_pli_matched_pairs": 14117,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.6484223605761947,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 10,
+          "expected": "S",
+          "observed": "S"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8605290903935837,
+      "ligand_bond_length_max_covalent_ratio": 1.013602730438486,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "PPARG_2PRG_BRL",
+      "target": "PPARG",
+      "sample": 4,
+      "file": "outputs/PPARG_2PRG_BRL/fold_personal_pparg_2prg_brl_model_4.cif",
+      "sha256": "f630e10b768ca1a2afb32bb3b4e95f2167eaafb352bbbfe2d44b4f5f1a38ae2d",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.82,
+          0.88
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.85,
+            0.97
+          ],
+          [
+            0.85,
+            0.27,
+            0.78
+          ],
+          [
+            0.97,
+            0.78,
+            0.46
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.26,
+            0.94
+          ],
+          [
+            1.16,
+            0.76,
+            1.8
+          ],
+          [
+            1.22,
+            2.73,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.27,
+          0.46
+        ],
+        "fraction_disordered": 0.17,
+        "has_clash": 0.0,
+        "iptm": 0.86,
+        "ptm": 0.8,
+        "ranking_score": 0.93
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.93,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 4,
+        "ccd": "BRL",
+        "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 25,
+        "exported_heavy_atoms": 25,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1506940891108774,
+      "aligned_receptor_residues": 246,
+      "chain_assignment": [
+        {
+          "reference": "B",
+          "prediction": "A",
+          "matched_residues": 246
+        },
+        {
+          "reference": "C",
+          "prediction": "B",
+          "matched_residues": 32
+        }
+      ],
+      "matched_protein_heavy_atoms": 2235,
+      "partner_ca_rmsd_receptor_aligned_a": 37.67322247278492,
+      "ligand_rmsd_receptor_aligned_a": 1.3571807357589356,
+      "ligand_heavy_atoms": 25,
+      "ligand_symmetry_mappings": 2,
+      "ligand_centroid_distance_a": 0.7103596490236911,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.3014781339613481,
+      "pocket_matched_heavy_atoms": 127,
+      "lddt_pli_style_ref15a": 0.8645250407310336,
+      "lddt_pli_matched_pairs": 14117,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.495487327156759,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 10,
+          "expected": "S",
+          "observed": "S"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8576955973714951,
+      "ligand_bond_length_max_covalent_ratio": 1.0111938413402957,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "sample": 0,
+      "file": "outputs/GCK_3IDH_GLC/fold_personal_gck_3idh_glc_model_0.cif",
+      "sha256": "f14047e8a7beb44493f671cf68a4dba8954fdfd6c610cf58ec7235fa772849cb",
+      "evaluation_status": "evaluation_error",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.96,
+          0.96
+        ],
+        "chain_pair_iptm": [
+          [
+            0.85,
+            0.96
+          ],
+          [
+            0.96,
+            0.05
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.27
+          ],
+          [
+            1.72,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.85,
+          0.05
+        ],
+        "fraction_disordered": 0.02,
+        "has_clash": 0.0,
+        "iptm": 0.96,
+        "ptm": 0.85,
+        "ranking_score": 0.95
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.95,
+      "selected_by_native_confidence": true,
+      "chemical_input_comparison": {
+        "sample": 0,
+        "ccd": "GLC",
+        "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 12,
+        "exported_heavy_atoms": 11,
+        "missing_reference_atom_names": [
+          "O1"
+        ],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "error": "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "sample": 1,
+      "file": "outputs/GCK_3IDH_GLC/fold_personal_gck_3idh_glc_model_1.cif",
+      "sha256": "1327185abe2e2ee85c9ee6210c2da3b4dcdce0b43046d31cf939fb4ac531b651",
+      "evaluation_status": "evaluation_error",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.95,
+          0.95
+        ],
+        "chain_pair_iptm": [
+          [
+            0.85,
+            0.95
+          ],
+          [
+            0.95,
+            0.05
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.3
+          ],
+          [
+            1.72,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.85,
+          0.05
+        ],
+        "fraction_disordered": 0.02,
+        "has_clash": 0.0,
+        "iptm": 0.95,
+        "ptm": 0.85,
+        "ranking_score": 0.94
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.94,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 1,
+        "ccd": "GLC",
+        "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 12,
+        "exported_heavy_atoms": 11,
+        "missing_reference_atom_names": [
+          "O1"
+        ],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "error": "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "sample": 2,
+      "file": "outputs/GCK_3IDH_GLC/fold_personal_gck_3idh_glc_model_2.cif",
+      "sha256": "4863253e1b14e4c7d40ca603b1ed6737f7fe1aac1d2c4a21731630e5774aaffd",
+      "evaluation_status": "evaluation_error",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.95,
+          0.95
+        ],
+        "chain_pair_iptm": [
+          [
+            0.83,
+            0.95
+          ],
+          [
+            0.95,
+            0.05
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.42
+          ],
+          [
+            1.9,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.83,
+          0.05
+        ],
+        "fraction_disordered": 0.02,
+        "has_clash": 0.0,
+        "iptm": 0.95,
+        "ptm": 0.84,
+        "ranking_score": 0.94
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.94,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 2,
+        "ccd": "GLC",
+        "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 12,
+        "exported_heavy_atoms": 11,
+        "missing_reference_atom_names": [
+          "O1"
+        ],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "error": "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "sample": 3,
+      "file": "outputs/GCK_3IDH_GLC/fold_personal_gck_3idh_glc_model_3.cif",
+      "sha256": "16e7c80119e1160aa84fa278f65e0a255a1ace9f6b6a4deb83cb330977d9cbf5",
+      "evaluation_status": "evaluation_error",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.94,
+          0.94
+        ],
+        "chain_pair_iptm": [
+          [
+            0.83,
+            0.94
+          ],
+          [
+            0.94,
+            0.05
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.46
+          ],
+          [
+            2.05,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.83,
+          0.05
+        ],
+        "fraction_disordered": 0.02,
+        "has_clash": 0.0,
+        "iptm": 0.94,
+        "ptm": 0.84,
+        "ranking_score": 0.93
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.93,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 3,
+        "ccd": "GLC",
+        "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 12,
+        "exported_heavy_atoms": 11,
+        "missing_reference_atom_names": [
+          "O1"
+        ],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "error": "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "GCK_3IDH_GLC",
+      "target": "GCK",
+      "sample": 4,
+      "file": "outputs/GCK_3IDH_GLC/fold_personal_gck_3idh_glc_model_4.cif",
+      "sha256": "33ff07fbe2b725bf91e280934370cf1c307d6bff77d9a8b561c166581a789530",
+      "evaluation_status": "evaluation_error",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.94,
+          0.94
+        ],
+        "chain_pair_iptm": [
+          [
+            0.84,
+            0.94
+          ],
+          [
+            0.94,
+            0.05
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            1.49
+          ],
+          [
+            2.08,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.84,
+          0.05
+        ],
+        "fraction_disordered": 0.02,
+        "has_clash": 0.0,
+        "iptm": 0.94,
+        "ptm": 0.84,
+        "ranking_score": 0.93
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.93,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 4,
+        "ccd": "GLC",
+        "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 12,
+        "exported_heavy_atoms": 11,
+        "missing_reference_atom_names": [
+          "O1"
+        ],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "error": "No chemically corresponding ligand found; heavy-atom counts or connectivity differ",
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "sample": 0,
+      "file": "outputs/AURKA_3E5A_VX680_TPX2/fold_personal_aurka_3e5a_vx680_tpx2_model_0.cif",
+      "sha256": "13bf1d22ecf8456f5febecfcf72fd582ccd0eb58d2de6159e7218d3844975774",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.92,
+          0.77,
+          0.8
+        ],
+        "chain_pair_iptm": [
+          [
+            0.95,
+            0.89,
+            0.95
+          ],
+          [
+            0.89,
+            0.48,
+            0.65
+          ],
+          [
+            0.95,
+            0.65,
+            0.66
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.89,
+            0.81
+          ],
+          [
+            0.92,
+            0.76,
+            1.96
+          ],
+          [
+            0.98,
+            2.11,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.95,
+          0.48,
+          0.66
+        ],
+        "fraction_disordered": 0.14,
+        "has_clash": 0.0,
+        "iptm": 0.89,
+        "ptm": 0.94,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": true,
+      "chemical_input_comparison": {
+        "sample": 0,
+        "ccd": "VX6",
+        "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+        "server_formal_charge": 0,
+        "original_formal_charge": 1,
+        "canonical_isomeric_smiles_equal": false
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 33,
+        "exported_heavy_atoms": 33,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.01610459326753,
+      "aligned_receptor_residues": 265,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 265
+        },
+        {
+          "reference": "B",
+          "prediction": "B",
+          "matched_residues": 33
+        }
+      ],
+      "matched_protein_heavy_atoms": 2437,
+      "partner_ca_rmsd_receptor_aligned_a": 1.8045042829664304,
+      "ligand_rmsd_receptor_aligned_a": 0.9308964658035536,
+      "ligand_heavy_atoms": 33,
+      "ligand_symmetry_mappings": 8,
+      "ligand_centroid_distance_a": 0.6305635460339777,
+      "pocket_heavy_rmsd_receptor_aligned_a": 3.4424764939733357,
+      "pocket_matched_heavy_atoms": 120,
+      "lddt_pli_style_ref15a": 0.8477239645361916,
+      "lddt_pli_matched_pairs": 15114,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.7975623317452665,
+      "stereocentre_cip_comparison": [],
+      "specified_stereocentres": 0,
+      "stereocentres_correct": 0,
+      "stereochemistry_matches_input": null,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.860734233057079,
+      "ligand_bond_length_max_covalent_ratio": 1.0122811055747316,
+      "output_phosphorus_atoms": 1,
+      "modification_checks": [
+        {
+          "chain": "A",
+          "query_position_1based": 165,
+          "ccd": "TPO",
+          "retained": true,
+          "output_residue": "TPO",
+          "oxygen_phosphorus_distance_a": 1.64001371945481
+        }
+      ],
+      "input_phosphorylation_retained": true,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "sample": 1,
+      "file": "outputs/AURKA_3E5A_VX680_TPX2/fold_personal_aurka_3e5a_vx680_tpx2_model_1.cif",
+      "sha256": "c941ce2a4a9e263061e3eb2de26574095ad5e878e8c3d47bd34de350cc7d2873",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.77,
+          0.8
+        ],
+        "chain_pair_iptm": [
+          [
+            0.94,
+            0.88,
+            0.95
+          ],
+          [
+            0.88,
+            0.49,
+            0.65
+          ],
+          [
+            0.95,
+            0.65,
+            0.66
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.91,
+            0.81
+          ],
+          [
+            0.92,
+            0.76,
+            1.96
+          ],
+          [
+            0.97,
+            2.09,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.94,
+          0.49,
+          0.66
+        ],
+        "fraction_disordered": 0.14,
+        "has_clash": 0.0,
+        "iptm": 0.89,
+        "ptm": 0.93,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 1,
+        "ccd": "VX6",
+        "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+        "server_formal_charge": 0,
+        "original_formal_charge": 1,
+        "canonical_isomeric_smiles_equal": false
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 33,
+        "exported_heavy_atoms": 33,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.010152007099324,
+      "aligned_receptor_residues": 265,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 265
+        },
+        {
+          "reference": "B",
+          "prediction": "B",
+          "matched_residues": 33
+        }
+      ],
+      "matched_protein_heavy_atoms": 2437,
+      "partner_ca_rmsd_receptor_aligned_a": 1.9288341193611087,
+      "ligand_rmsd_receptor_aligned_a": 0.6647095662846068,
+      "ligand_heavy_atoms": 33,
+      "ligand_symmetry_mappings": 8,
+      "ligand_centroid_distance_a": 0.45250188545515047,
+      "pocket_heavy_rmsd_receptor_aligned_a": 3.480753723656286,
+      "pocket_matched_heavy_atoms": 120,
+      "lddt_pli_style_ref15a": 0.8625446605795951,
+      "lddt_pli_matched_pairs": 15114,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.80377263700179,
+      "stereocentre_cip_comparison": [],
+      "specified_stereocentres": 0,
+      "stereocentres_correct": 0,
+      "stereochemistry_matches_input": null,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8576762269156272,
+      "ligand_bond_length_max_covalent_ratio": 1.0169588646597127,
+      "output_phosphorus_atoms": 1,
+      "modification_checks": [
+        {
+          "chain": "A",
+          "query_position_1based": 165,
+          "ccd": "TPO",
+          "retained": true,
+          "output_residue": "TPO",
+          "oxygen_phosphorus_distance_a": 1.6431606738234694
+        }
+      ],
+      "input_phosphorylation_retained": true,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "sample": 2,
+      "file": "outputs/AURKA_3E5A_VX680_TPX2/fold_personal_aurka_3e5a_vx680_tpx2_model_2.cif",
+      "sha256": "6c0f3e21bc8c6524e2849c7980d1712d4aafc23da4780a791ac38116b719267c",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.76,
+          0.79
+        ],
+        "chain_pair_iptm": [
+          [
+            0.94,
+            0.88,
+            0.95
+          ],
+          [
+            0.88,
+            0.48,
+            0.64
+          ],
+          [
+            0.95,
+            0.64,
+            0.66
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.92,
+            0.81
+          ],
+          [
+            0.96,
+            0.76,
+            2.07
+          ],
+          [
+            0.97,
+            2.1,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.94,
+          0.48,
+          0.66
+        ],
+        "fraction_disordered": 0.14,
+        "has_clash": 0.0,
+        "iptm": 0.88,
+        "ptm": 0.93,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 2,
+        "ccd": "VX6",
+        "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+        "server_formal_charge": 0,
+        "original_formal_charge": 1,
+        "canonical_isomeric_smiles_equal": false
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 33,
+        "exported_heavy_atoms": 33,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0204378758747399,
+      "aligned_receptor_residues": 265,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 265
+        },
+        {
+          "reference": "B",
+          "prediction": "B",
+          "matched_residues": 33
+        }
+      ],
+      "matched_protein_heavy_atoms": 2437,
+      "partner_ca_rmsd_receptor_aligned_a": 2.1110994086491117,
+      "ligand_rmsd_receptor_aligned_a": 0.7191913566162135,
+      "ligand_heavy_atoms": 33,
+      "ligand_symmetry_mappings": 8,
+      "ligand_centroid_distance_a": 0.4705275015438124,
+      "pocket_heavy_rmsd_receptor_aligned_a": 3.4267313717198125,
+      "pocket_matched_heavy_atoms": 120,
+      "lddt_pli_style_ref15a": 0.8535794627497684,
+      "lddt_pli_matched_pairs": 15114,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.8008893230543768,
+      "stereocentre_cip_comparison": [],
+      "specified_stereocentres": 0,
+      "stereocentres_correct": 0,
+      "stereochemistry_matches_input": null,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8598398332142957,
+      "ligand_bond_length_max_covalent_ratio": 1.0123067597135629,
+      "output_phosphorus_atoms": 1,
+      "modification_checks": [
+        {
+          "chain": "A",
+          "query_position_1based": 165,
+          "ccd": "TPO",
+          "retained": true,
+          "output_residue": "TPO",
+          "oxygen_phosphorus_distance_a": 1.6440179439410019
+        }
+      ],
+      "input_phosphorylation_retained": true,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "sample": 3,
+      "file": "outputs/AURKA_3E5A_VX680_TPX2/fold_personal_aurka_3e5a_vx680_tpx2_model_3.cif",
+      "sha256": "abc6cc216f812d7bed7f8349bb9a4283f50ee29e6d4dcae97eedb5aa3d0f01db",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.76,
+          0.8
+        ],
+        "chain_pair_iptm": [
+          [
+            0.94,
+            0.88,
+            0.95
+          ],
+          [
+            0.88,
+            0.48,
+            0.65
+          ],
+          [
+            0.95,
+            0.65,
+            0.67
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.92,
+            0.81
+          ],
+          [
+            0.94,
+            0.76,
+            2.06
+          ],
+          [
+            0.97,
+            2.09,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.94,
+          0.48,
+          0.67
+        ],
+        "fraction_disordered": 0.14,
+        "has_clash": 0.0,
+        "iptm": 0.89,
+        "ptm": 0.93,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 3,
+        "ccd": "VX6",
+        "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+        "server_formal_charge": 0,
+        "original_formal_charge": 1,
+        "canonical_isomeric_smiles_equal": false
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 33,
+        "exported_heavy_atoms": 33,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0452018347733374,
+      "aligned_receptor_residues": 265,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 265
+        },
+        {
+          "reference": "B",
+          "prediction": "B",
+          "matched_residues": 33
+        }
+      ],
+      "matched_protein_heavy_atoms": 2437,
+      "partner_ca_rmsd_receptor_aligned_a": 2.111750302305258,
+      "ligand_rmsd_receptor_aligned_a": 0.6394939950050078,
+      "ligand_heavy_atoms": 33,
+      "ligand_symmetry_mappings": 8,
+      "ligand_centroid_distance_a": 0.49577359722084186,
+      "pocket_heavy_rmsd_receptor_aligned_a": 3.3304838472807083,
+      "pocket_matched_heavy_atoms": 120,
+      "lddt_pli_style_ref15a": 0.862147677649861,
+      "lddt_pli_matched_pairs": 15114,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.77087747834508,
+      "stereocentre_cip_comparison": [],
+      "specified_stereocentres": 0,
+      "stereocentres_correct": 0,
+      "stereochemistry_matches_input": null,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8537921407690289,
+      "ligand_bond_length_max_covalent_ratio": 1.0135666468690794,
+      "output_phosphorus_atoms": 1,
+      "modification_checks": [
+        {
+          "chain": "A",
+          "query_position_1based": 165,
+          "ccd": "TPO",
+          "retained": true,
+          "output_residue": "TPO",
+          "oxygen_phosphorus_distance_a": 1.646561872508895
+        }
+      ],
+      "input_phosphorylation_retained": true,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "AURKA_3E5A_VX680_TPX2",
+      "target": "AURKA",
+      "sample": 4,
+      "file": "outputs/AURKA_3E5A_VX680_TPX2/fold_personal_aurka_3e5a_vx680_tpx2_model_4.cif",
+      "sha256": "2d4743f9ef63fd8ded529d8735a05379c57bb26b709f1ffc38646e8424d22c0b",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "chain_iptm": [
+          0.91,
+          0.76,
+          0.8
+        ],
+        "chain_pair_iptm": [
+          [
+            0.94,
+            0.88,
+            0.95
+          ],
+          [
+            0.88,
+            0.48,
+            0.65
+          ],
+          [
+            0.95,
+            0.65,
+            0.67
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.92,
+            0.81
+          ],
+          [
+            0.95,
+            0.76,
+            2.06
+          ],
+          [
+            0.98,
+            2.12,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.94,
+          0.48,
+          0.67
+        ],
+        "fraction_disordered": 0.14,
+        "has_clash": 0.0,
+        "iptm": 0.88,
+        "ptm": 0.93,
+        "ranking_score": 0.96
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.96,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 4,
+        "ccd": "VX6",
+        "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+        "server_formal_charge": 0,
+        "original_formal_charge": 1,
+        "canonical_isomeric_smiles_equal": false
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 33,
+        "exported_heavy_atoms": 33,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0429655749448405,
+      "aligned_receptor_residues": 265,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 265
+        },
+        {
+          "reference": "B",
+          "prediction": "B",
+          "matched_residues": 33
+        }
+      ],
+      "matched_protein_heavy_atoms": 2437,
+      "partner_ca_rmsd_receptor_aligned_a": 2.416270132758082,
+      "ligand_rmsd_receptor_aligned_a": 0.6804039463849796,
+      "ligand_heavy_atoms": 33,
+      "ligand_symmetry_mappings": 8,
+      "ligand_centroid_distance_a": 0.4671140507636473,
+      "pocket_heavy_rmsd_receptor_aligned_a": 3.3980775535882737,
+      "pocket_matched_heavy_atoms": 120,
+      "lddt_pli_style_ref15a": 0.8480878655551145,
+      "lddt_pli_matched_pairs": 15114,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.775835189632122,
+      "stereocentre_cip_comparison": [],
+      "specified_stereocentres": 0,
+      "stereocentres_correct": 0,
+      "stereochemistry_matches_input": null,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.861199656435368,
+      "ligand_bond_length_max_covalent_ratio": 1.0233533070241332,
+      "output_phosphorus_atoms": 1,
+      "modification_checks": [
+        {
+          "chain": "A",
+          "query_position_1based": 165,
+          "ccd": "TPO",
+          "retained": true,
+          "output_residue": "TPO",
+          "oxygen_phosphorus_distance_a": 1.6457038008098537
+        }
+      ],
+      "input_phosphorylation_retained": true,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "sample": 0,
+      "file": "outputs/ERK2_4QTA_SCH772984/fold_personal_erk2_4qta_sch772984_model_0.cif",
+      "sha256": "092790cf27957025aa4dc45b27d0d52c5b299ffbccbf7883f87d84964b9c1959",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.97,
+          0.97
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.97
+          ],
+          [
+            0.97,
+            0.76
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.8
+          ],
+          [
+            0.87,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.76
+        ],
+        "fraction_disordered": 0.04,
+        "has_clash": 0.0,
+        "iptm": 0.97,
+        "ptm": 0.92,
+        "ranking_score": 0.98
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.98,
+      "selected_by_native_confidence": true,
+      "chemical_input_comparison": {
+        "sample": 0,
+        "ccd": "38Z",
+        "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 44,
+        "exported_heavy_atoms": 44,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0766920624998442,
+      "aligned_receptor_residues": 335,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 335
+        }
+      ],
+      "matched_protein_heavy_atoms": 2715,
+      "ligand_rmsd_receptor_aligned_a": 0.47591683596602374,
+      "ligand_heavy_atoms": 44,
+      "ligand_symmetry_mappings": 16,
+      "ligand_centroid_distance_a": 0.28230893189243783,
+      "pocket_heavy_rmsd_receptor_aligned_a": 0.7845411900933136,
+      "pocket_matched_heavy_atoms": 175,
+      "lddt_pli_style_ref15a": 0.9530139785445595,
+      "lddt_pli_matched_pairs": 21533,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.661409213180119,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 18,
+          "expected": "R",
+          "observed": "R"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8430309897933963,
+      "ligand_bond_length_max_covalent_ratio": 1.0206441903897603,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "sample": 1,
+      "file": "outputs/ERK2_4QTA_SCH772984/fold_personal_erk2_4qta_sch772984_model_1.cif",
+      "sha256": "a7b4ce49f67f237f52a5fcec6e4264bbb7f1aca8e1bb6ae137e9f36570eae40e",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.97,
+          0.97
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.97
+          ],
+          [
+            0.97,
+            0.76
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.8
+          ],
+          [
+            0.87,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.76
+        ],
+        "fraction_disordered": 0.04,
+        "has_clash": 0.0,
+        "iptm": 0.97,
+        "ptm": 0.92,
+        "ranking_score": 0.98
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.98,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 1,
+        "ccd": "38Z",
+        "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 44,
+        "exported_heavy_atoms": 44,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1328642347834381,
+      "aligned_receptor_residues": 335,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 335
+        }
+      ],
+      "matched_protein_heavy_atoms": 2715,
+      "ligand_rmsd_receptor_aligned_a": 0.5075426338457344,
+      "ligand_heavy_atoms": 44,
+      "ligand_symmetry_mappings": 16,
+      "ligand_centroid_distance_a": 0.34624471037558335,
+      "pocket_heavy_rmsd_receptor_aligned_a": 0.760268641672074,
+      "pocket_matched_heavy_atoms": 175,
+      "lddt_pli_style_ref15a": 0.9528282171550644,
+      "lddt_pli_matched_pairs": 21533,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.677728328266325,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 18,
+          "expected": "R",
+          "observed": "R"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8478463796206399,
+      "ligand_bond_length_max_covalent_ratio": 1.0165735204255855,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "sample": 2,
+      "file": "outputs/ERK2_4QTA_SCH772984/fold_personal_erk2_4qta_sch772984_model_2.cif",
+      "sha256": "16eb1f1289c82a1dff53bced5cd1a7c529211d8f1ade827061699c9f43951237",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.97,
+          0.97
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.97
+          ],
+          [
+            0.97,
+            0.76
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.8
+          ],
+          [
+            0.87,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.76
+        ],
+        "fraction_disordered": 0.04,
+        "has_clash": 0.0,
+        "iptm": 0.97,
+        "ptm": 0.92,
+        "ranking_score": 0.98
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.98,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 2,
+        "ccd": "38Z",
+        "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 44,
+        "exported_heavy_atoms": 44,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0614533380965767,
+      "aligned_receptor_residues": 335,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 335
+        }
+      ],
+      "matched_protein_heavy_atoms": 2715,
+      "ligand_rmsd_receptor_aligned_a": 0.6823995974436947,
+      "ligand_heavy_atoms": 44,
+      "ligand_symmetry_mappings": 16,
+      "ligand_centroid_distance_a": 0.46469055386727615,
+      "pocket_heavy_rmsd_receptor_aligned_a": 0.7060097199065187,
+      "pocket_matched_heavy_atoms": 175,
+      "lddt_pli_style_ref15a": 0.9420308363906562,
+      "lddt_pli_matched_pairs": 21533,
+      "ligand_protein_vdw075_pairs": 0,
+      "ligand_protein_vdw060_pairs": 0,
+      "ligand_protein_min_distance_a": 2.573642554823802,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 18,
+          "expected": "R",
+          "observed": "R"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8486137569416027,
+      "ligand_bond_length_max_covalent_ratio": 1.01510412876905,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": true,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "sample": 3,
+      "file": "outputs/ERK2_4QTA_SCH772984/fold_personal_erk2_4qta_sch772984_model_3.cif",
+      "sha256": "4f01ea972dac64b3b5a2bccdca183e106c8a0da262c30d46d71c585cdb329287",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.97,
+          0.97
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.97
+          ],
+          [
+            0.97,
+            0.76
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.8
+          ],
+          [
+            0.88,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.76
+        ],
+        "fraction_disordered": 0.04,
+        "has_clash": 0.0,
+        "iptm": 0.97,
+        "ptm": 0.92,
+        "ranking_score": 0.98
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.98,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 3,
+        "ccd": "38Z",
+        "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 44,
+        "exported_heavy_atoms": 44,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.1364463580662973,
+      "aligned_receptor_residues": 335,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 335
+        }
+      ],
+      "matched_protein_heavy_atoms": 2715,
+      "ligand_rmsd_receptor_aligned_a": 0.6762463117822783,
+      "ligand_heavy_atoms": 44,
+      "ligand_symmetry_mappings": 16,
+      "ligand_centroid_distance_a": 0.4240559311543586,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.394108577454424,
+      "pocket_matched_heavy_atoms": 175,
+      "lddt_pli_style_ref15a": 0.9344262295081968,
+      "lddt_pli_matched_pairs": 21533,
+      "ligand_protein_vdw075_pairs": 6,
+      "ligand_protein_vdw060_pairs": 2,
+      "ligand_protein_min_distance_a": 1.4501524057836137,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 18,
+          "expected": "R",
+          "observed": "R"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.8460809685580222,
+      "ligand_bond_length_max_covalent_ratio": 1.015598187233505,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": false,
+      "tier": "personal_af3"
+    },
+    {
+      "model": "alphafold3_server",
+      "case": "ERK2_4QTA_SCH772984",
+      "target": "ERK2",
+      "sample": 4,
+      "file": "outputs/ERK2_4QTA_SCH772984/fold_personal_erk2_4qta_sch772984_model_4.cif",
+      "sha256": "bce7f70604afa9d3fa768c0cd35d2817e4529cbb3fb60487c0c579bde33b8c35",
+      "evaluation_status": "scored",
+      "confidence_scalars": {
+        "chain_ids": [
+          "A",
+          "B"
+        ],
+        "chain_iptm": [
+          0.97,
+          0.97
+        ],
+        "chain_pair_iptm": [
+          [
+            0.91,
+            0.97
+          ],
+          [
+            0.97,
+            0.76
+          ]
+        ],
+        "chain_pair_pae_min": [
+          [
+            0.76,
+            0.8
+          ],
+          [
+            0.86,
+            0.76
+          ]
+        ],
+        "chain_ptm": [
+          0.91,
+          0.76
+        ],
+        "fraction_disordered": 0.03,
+        "has_clash": 0.0,
+        "iptm": 0.97,
+        "ptm": 0.92,
+        "ranking_score": 0.97
+      },
+      "ranking_metric": "ranking_score",
+      "ranking_value": 0.97,
+      "selected_by_native_confidence": false,
+      "chemical_input_comparison": {
+        "sample": 4,
+        "ccd": "38Z",
+        "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+        "server_formal_charge": 0,
+        "original_formal_charge": 0,
+        "canonical_isomeric_smiles_equal": true
+      },
+      "ligand_atom_inventory": {
+        "reference_heavy_atoms": 44,
+        "exported_heavy_atoms": 44,
+        "missing_reference_atom_names": [],
+        "additional_exported_atom_names": []
+      },
+      "predicted_bond_source": "frozen distance-inference rule",
+      "receptor_ca_rmsd_a": 1.0873170773239542,
+      "aligned_receptor_residues": 335,
+      "chain_assignment": [
+        {
+          "reference": "A",
+          "prediction": "A",
+          "matched_residues": 335
+        }
+      ],
+      "matched_protein_heavy_atoms": 2715,
+      "ligand_rmsd_receptor_aligned_a": 0.4733245654167406,
+      "ligand_heavy_atoms": 44,
+      "ligand_symmetry_mappings": 16,
+      "ligand_centroid_distance_a": 0.331741584308813,
+      "pocket_heavy_rmsd_receptor_aligned_a": 1.3331043111522503,
+      "pocket_matched_heavy_atoms": 175,
+      "lddt_pli_style_ref15a": 0.9438536200250778,
+      "lddt_pli_matched_pairs": 21533,
+      "ligand_protein_vdw075_pairs": 2,
+      "ligand_protein_vdw060_pairs": 1,
+      "ligand_protein_min_distance_a": 1.9535877251866642,
+      "stereocentre_cip_comparison": [
+        {
+          "input_atom_index": 18,
+          "expected": "R",
+          "observed": "R"
+        }
+      ],
+      "specified_stereocentres": 1,
+      "stereocentres_correct": 1,
+      "stereochemistry_matches_input": true,
+      "ligand_bond_length_outliers": 0,
+      "ligand_bond_length_min_covalent_ratio": 0.847188367094011,
+      "ligand_bond_length_max_covalent_ratio": 1.0138407707460986,
+      "output_phosphorus_atoms": 0,
+      "modification_checks": [],
+      "input_phosphorylation_retained": null,
+      "geometry_screen_hit": true,
+      "clean_screen_hit": false,
+      "tier": "personal_af3"
+    }
+  ],
+  "input_manifest": {
+    "scope": "User-requested personal non-commercial comparison; separate from Flory company work",
+    "submission_status": "four_jobs_completed_twenty_samples_downloaded",
+    "model": "AlphaFold 3 via AlphaFold Server; exact CIF version strings in output_manifest.json",
+    "seed": 42,
+    "expected_samples_per_job": 5,
+    "templates": false,
+    "msa_policy": "Original frozen unpaired A3M bytes embedded unchanged; no MSA search when custom unpaired MSA is supplied per server FAQ",
+    "input_sha256": "21bbff6e36a2aac3fa365d9808864084c8d7fce16a525b26a46a33189f35cac6",
+    "source_panel_sha256": "5140e672695b8956e196b29f734d8a9e8a8b5913459e37afc6785953b5cd9587",
+    "native_rank_selection": "maximum native ranking_score across all five samples, before geometry screening",
+    "cases": [
+      {
+        "case": "PPARG_2PRG_BRL",
+        "job_name": "Personal_PPARG_2PRG_BRL",
+        "target": "PPARG",
+        "reference": "references/2PRG.cif",
+        "reference_sha256": "6e6389214747dab0b289843545d5fa808f08a982f307fa0e13e24ad005936973",
+        "evaluation_reference": {
+          "assembly_id": "2",
+          "protein_chains": [
+            "B",
+            "C"
+          ],
+          "ligand_auth_chain": "B",
+          "reason": "Deposited biological assembly 2 is B+C. Coordinate-free entity inputs are unchanged: receptor A and B share entity 1 and the exact same canonical sequence."
+        },
+        "proteins": [
+          {
+            "original_chain": "A",
+            "sequence_sha256": "554fd07bb75f17ff2e80873dbf9b69188969b34cffef5f22982c0142726629aa",
+            "msa_sha256": "dfc4998114e07ca509aabc583c93abf48babd6ed0a59dd93f0ec73765de218ed",
+            "msa_rows": 1024,
+            "modifications": []
+          },
+          {
+            "original_chain": "C",
+            "sequence_sha256": "faab6930053cf4bb2db1c086c4db22427a8fe3bf93c9196fea4bb8b92c4bd6c8",
+            "msa_sha256": "af00ec101165dddeaf73c3f397bdcbba7fad55bd913e27426ba6b3f71e0b62d9",
+            "msa_rows": 1024,
+            "modifications": []
+          }
+        ],
+        "original_ligand_specifications": [
+          {
+            "id": "L",
+            "ccd": "BRL",
+            "smiles": "CN(CCOc1ccc(C[C@@H]2SC(=O)NC2=O)cc1)c1ccccn1",
+            "formal_charge": 0,
+            "heavy_atoms": 25,
+            "ccd_sha256": "502b0b72dc559404a8dbfa354cd6da549e272c6c5e50156068a889aa0933da0d"
+          }
+        ],
+        "notes": []
+      },
+      {
+        "case": "GCK_3IDH_GLC",
+        "job_name": "Personal_GCK_3IDH_GLC",
+        "target": "GCK",
+        "reference": "references/3IDH.cif",
+        "reference_sha256": "4602a0138dbca9c376a536ae3e967acbc23797045409e0b568e2fd8179f457eb",
+        "evaluation_reference": null,
+        "proteins": [
+          {
+            "original_chain": "A",
+            "sequence_sha256": "71fe53434608c797188de1e90271e95c8ab9115286d2bd76d21274d82f971abc",
+            "msa_sha256": "7942a9b6b2b833cbe12a5e87c3a40da87d14920b905c4b1f8d20bbc67bb23ccb",
+            "msa_rows": 1024,
+            "modifications": []
+          }
+        ],
+        "original_ligand_specifications": [
+          {
+            "id": "L",
+            "ccd": "GLC",
+            "smiles": "OC[C@H]1O[C@H](O)[C@H](O)[C@@H](O)[C@@H]1O",
+            "formal_charge": 0,
+            "heavy_atoms": 12,
+            "ccd_sha256": "07eedff69de20c995d0aaf1f582bc6b9ecbf63bd6b4702dbb5141dcb3ab0f260"
+          }
+        ],
+        "notes": []
+      },
+      {
+        "case": "AURKA_3E5A_VX680_TPX2",
+        "job_name": "Personal_AURKA_3E5A_VX680_TPX2",
+        "target": "AURKA",
+        "reference": "references/3E5A.cif",
+        "reference_sha256": "b7f54fa440c1e78f1dab186687afe50e3e769aff798635e79de14504586cfe32",
+        "evaluation_reference": null,
+        "proteins": [
+          {
+            "original_chain": "A",
+            "sequence_sha256": "4e2826a5f7de194304ba3ebb180a5499e77ec71834db798fc9349f2cb4b49d7b",
+            "msa_sha256": "a628d330f4efabe1e435d5efb66a4d6ef350e7d7f64d194a636d04e2b97cb25c",
+            "msa_rows": 1024,
+            "modifications": [
+              {
+                "ptmType": "CCD_TPO",
+                "ptmPosition": 165
+              }
+            ]
+          },
+          {
+            "original_chain": "B",
+            "sequence_sha256": "68444e04cadce00017051e2cd46c776a2bee8f5acc9e482d2b52196e1f842da3",
+            "msa_sha256": "51d67e64d99a106a9abae2a19e2fb6900a3ffcb5551c96eb465f96d92716b34d",
+            "msa_rows": 40,
+            "modifications": []
+          }
+        ],
+        "original_ligand_specifications": [
+          {
+            "id": "L",
+            "ccd": "VX6",
+            "smiles": "Cc1cc(Nc2cc(N3CC[NH+](C)CC3)nc(Sc3ccc(NC(=O)C4CC4)cc3)n2)n[nH]1",
+            "formal_charge": 1,
+            "heavy_atoms": 33,
+            "ccd_sha256": "348409de98aac5fd8e4e9ebc976abdd30fea2269c596deeb723de88ba470f938"
+          }
+        ],
+        "notes": [
+          "Chemical-input deviation: the earlier explicit VX-680 SMILES has formal charge +1; the deposited VX6 CCD component has formal charge 0. This server draft specifies CCD VX6, not the +1 SMILES. Inspect the server-resolved chemical component in the output; do not claim an exactly matched Aurora protonation-state comparison."
+        ]
+      },
+      {
+        "case": "ERK2_4QTA_SCH772984",
+        "job_name": "Personal_ERK2_4QTA_SCH772984",
+        "target": "ERK2",
+        "reference": "references/4QTA.cif",
+        "reference_sha256": "4c2cc790f8656fdf306be103904269e450f38032a6ff07b705f078651d282b3f",
+        "evaluation_reference": null,
+        "proteins": [
+          {
+            "original_chain": "A",
+            "sequence_sha256": "1f8a3615c666b4616a4312c92a9868b652dd977f2d3f2bd505499cbcd82a2639",
+            "msa_sha256": "cf7d31f518386511e9cb27ff5a8f66b40c5d96718a85dd4f85858f912c8447fa",
+            "msa_rows": 1024,
+            "modifications": []
+          }
+        ],
+        "original_ligand_specifications": [
+          {
+            "id": "L",
+            "ccd": "38Z",
+            "smiles": "O=C(Nc1ccc2n[nH]c(-c3ccncc3)c2c1)[C@@H]1CCN(CC(=O)N2CCN(c3ccc(-c4ncccn4)cc3)CC2)C1",
+            "formal_charge": 0,
+            "heavy_atoms": 44,
+            "ccd_sha256": "000042179b44fca192478f6e314bba3d0215987f9baba9b7e2d1aa0d1849a57f"
+          }
+        ],
+        "notes": []
+      }
+    ],
+    "documentation": [
+      "https://alphafoldserver.com/faq",
+      "https://github.com/google-deepmind/alphafold/blob/main/server/README.md",
+      "https://alphafoldserver.com/terms",
+      "https://alphafoldserver.com/output-terms"
+    ],
+    "rights": "Preserve all downloaded output terms. Do not use as training data, in docking/screening tools, or for company research. No publication to the Flory website.",
+    "validation": "Downloaded sequences, seed, PTMs and template flags match; all six archived unpaired MSAs hash-match originals"
+  },
+  "output_manifest": {
+    "scope": "User-requested personal non-commercial comparison; separate from Flory company work",
+    "evaluation_protocol_version": 3,
+    "protocol_sha256": "52bb3ebf98d7a80c8b1fc1d76fcbb5f9ce96240f163a7fc9073e3c6e9d4b5b6b",
+    "geometry_sha256": "a8b53d266c5a91c7a7d0e98330f9c0ecbe042ec66076ebf6b08a8bb875dc94fc",
+    "original_evaluator_sha256": "ec14c74381cb0dc821f0cd781e087747089662fa88fc05cc1d9d278f1a22a697",
+    "adapter_sha256": "cb768a8f531e6499e03a4943803da4e2fe93e486b63db5ccc5b0baa2d4ad7a90",
+    "cases": [
+      {
+        "case": "PPARG_2PRG_BRL",
+        "archive_sha256": "d09185988bbb4dbe7f0600552cb262e961afc86a075d500db2e441f78f857c09",
+        "downloaded_job_request_version": 3,
+        "msa_bytes_match_original": true,
+        "request_settings_match_original": true,
+        "software_version_strings": [
+          "AlphaFold-beta-20231127 (d489b72d-c050-40c4-afa3-9bb895a4b9ca @ 2026-11-19 03:54:58)"
+        ],
+        "chemical_definitions": [
+          {
+            "sample": 0,
+            "ccd": "BRL",
+            "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 1,
+            "ccd": "BRL",
+            "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 2,
+            "ccd": "BRL",
+            "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 3,
+            "ccd": "BRL",
+            "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 4,
+            "ccd": "BRL",
+            "server_smiles": "CN(CCOc1ccc(cc1)C[C@H]2C(=O)NC(=O)S2)c3ccccn3",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          }
+        ],
+        "files": {
+          "fold_personal_pparg_2prg_brl_full_data_0.json": "22c69210f0929c4ab243b385916b88cf7e4edbbd5c34d2f023bd661008f14db7",
+          "fold_personal_pparg_2prg_brl_full_data_1.json": "97898b0f57b319b834760a66877ccd71c9e451b7b3caa4050cbdba630c7bda5d",
+          "fold_personal_pparg_2prg_brl_full_data_2.json": "e7e6908c9e1bd0b5f23afc7174092e675dcee2cb083af7224e3326b090ef47aa",
+          "fold_personal_pparg_2prg_brl_full_data_3.json": "1caa745c06f2fd087aa01f933ba0e6f4be468ed2fffe90f6a1258be37cc5469e",
+          "fold_personal_pparg_2prg_brl_full_data_4.json": "375a13fac180b9b19f7a849d2b4321773df75793e5d7ba2e7a19bf397dabc9bd",
+          "fold_personal_pparg_2prg_brl_job_request.json": "c37b3710911b8f36cc7a6c50a4847df88d30439bc830d378075d6940e251bd4b",
+          "fold_personal_pparg_2prg_brl_model_0.cif": "3e1c9e87c975c03419c3cd3f021ae9340616aa347b1193c4671c333f0ec9954f",
+          "fold_personal_pparg_2prg_brl_model_1.cif": "98ce67ebbc3f8887ab4d087b049aa248cd40a8e3d08f45437d7a4bce38311cb1",
+          "fold_personal_pparg_2prg_brl_model_2.cif": "8d8fda34848fc0cb98e0358332fec00032df541bfab831e9c46051c1694b0601",
+          "fold_personal_pparg_2prg_brl_model_3.cif": "2553c5d731cdf7ca284a31b058e8d02bd805ea440b74b2eeb450caeaff4e7b5a",
+          "fold_personal_pparg_2prg_brl_model_4.cif": "f630e10b768ca1a2afb32bb3b4e95f2167eaafb352bbbfe2d44b4f5f1a38ae2d",
+          "fold_personal_pparg_2prg_brl_summary_confidences_0.json": "c98912456aab8b0bf5fdfdcaf4c42b4ee7d55b139f1e859d15cef632ffd7f74a",
+          "fold_personal_pparg_2prg_brl_summary_confidences_1.json": "0cc39afa8cf0e3390a9023603f7fbe6c9576973ef7b0fd396e3e9dd8eda1ff11",
+          "fold_personal_pparg_2prg_brl_summary_confidences_2.json": "f2ee31893995ca46182e2a16c013610dcebb96dfd944c6ed76644c10ae3f3595",
+          "fold_personal_pparg_2prg_brl_summary_confidences_3.json": "a2003c7076575da2e969c11a82e87a3b0e790cffd06a2d3b12d7839f54aa3ec7",
+          "fold_personal_pparg_2prg_brl_summary_confidences_4.json": "2bb57ff6d0301e5df7b0ff5f8732ccee8c1ffbceff839eb122cfa5b62a220792",
+          "msas/fold_personal_pparg_2prg_brl_unpaired_af3_personal_four_targets_json_msa_chains_a.a3m": "dfc4998114e07ca509aabc583c93abf48babd6ed0a59dd93f0ec73765de218ed",
+          "msas/fold_personal_pparg_2prg_brl_unpaired_af3_personal_four_targets_json_msa_chains_b.a3m": "af00ec101165dddeaf73c3f397bdcbba7fad55bd913e27426ba6b3f71e0b62d9",
+          "terms_of_use.md": "1ae90834413742f5185041af2e1bc7982321e2938b3b0c5367e00edd34c61df4"
+        }
+      },
+      {
+        "case": "GCK_3IDH_GLC",
+        "archive_sha256": "79cd9e1c96df13752e1caa70638a9565984706f513fee38b6fb02042380e300a",
+        "downloaded_job_request_version": 3,
+        "msa_bytes_match_original": true,
+        "request_settings_match_original": true,
+        "software_version_strings": [
+          "AlphaFold-beta-20231127 (d489b72d-c050-40c4-afa3-9bb895a4b9ca @ 2026-11-19 03:56:21)"
+        ],
+        "chemical_definitions": [
+          {
+            "sample": 0,
+            "ccd": "GLC",
+            "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 1,
+            "ccd": "GLC",
+            "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 2,
+            "ccd": "GLC",
+            "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 3,
+            "ccd": "GLC",
+            "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 4,
+            "ccd": "GLC",
+            "server_smiles": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O)O)O)O)O",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          }
+        ],
+        "files": {
+          "fold_personal_gck_3idh_glc_full_data_0.json": "579e2d57ebbe5cabfabaf8e1b72bc23e141ae39ac8af4c67080378e837c2b2d7",
+          "fold_personal_gck_3idh_glc_full_data_1.json": "d112589095b56459827bf023144ee3e85db1113fec5d6593f1b7bfd1dcca6e97",
+          "fold_personal_gck_3idh_glc_full_data_2.json": "5d792139993378ae89bfcf980c6b8d9d5966592389ed3b8585c8dab9a93cd3ea",
+          "fold_personal_gck_3idh_glc_full_data_3.json": "d162c00b9f16ff26960159755104f24dea28faec7f04c4602313beca8b5a88f5",
+          "fold_personal_gck_3idh_glc_full_data_4.json": "ee18790be6b435bbee2dd8bc30859cf113f4720f1ccd3a9c33a71b4e89565a87",
+          "fold_personal_gck_3idh_glc_job_request.json": "9bbd91213a96748312a98e781ec9ab2fd34f32e0c878e7ae9623d2cebb490c22",
+          "fold_personal_gck_3idh_glc_model_0.cif": "f14047e8a7beb44493f671cf68a4dba8954fdfd6c610cf58ec7235fa772849cb",
+          "fold_personal_gck_3idh_glc_model_1.cif": "1327185abe2e2ee85c9ee6210c2da3b4dcdce0b43046d31cf939fb4ac531b651",
+          "fold_personal_gck_3idh_glc_model_2.cif": "4863253e1b14e4c7d40ca603b1ed6737f7fe1aac1d2c4a21731630e5774aaffd",
+          "fold_personal_gck_3idh_glc_model_3.cif": "16e7c80119e1160aa84fa278f65e0a255a1ace9f6b6a4deb83cb330977d9cbf5",
+          "fold_personal_gck_3idh_glc_model_4.cif": "33ff07fbe2b725bf91e280934370cf1c307d6bff77d9a8b561c166581a789530",
+          "fold_personal_gck_3idh_glc_summary_confidences_0.json": "518204d3dd7ed0b94f6cd712c4a76e8382559df0ebcb9d48fe638935d76b5fa6",
+          "fold_personal_gck_3idh_glc_summary_confidences_1.json": "0aa8b2422ecf7d727ae3dfc54e2200e5af32bcdb8d8a36aabeed6e20ad6d976d",
+          "fold_personal_gck_3idh_glc_summary_confidences_2.json": "a40d0d12d85e2d3021c645563f2ed615f1775f028306feb6ff6fca03ead71733",
+          "fold_personal_gck_3idh_glc_summary_confidences_3.json": "3929cd17d19e1b46f4868e3e2c55bdeaa25d3f31281878c62f1bf8e81b57777a",
+          "fold_personal_gck_3idh_glc_summary_confidences_4.json": "a08ca8b49e7f8d91702e9bbcea89fca0aafe1cfee4ad461cda98b46c9397ed80",
+          "msas/fold_personal_gck_3idh_glc_unpaired_af3_personal_four_targets_json_msa_chains_a.a3m": "7942a9b6b2b833cbe12a5e87c3a40da87d14920b905c4b1f8d20bbc67bb23ccb",
+          "terms_of_use.md": "1ae90834413742f5185041af2e1bc7982321e2938b3b0c5367e00edd34c61df4"
+        }
+      },
+      {
+        "case": "AURKA_3E5A_VX680_TPX2",
+        "archive_sha256": "a9a4b4759eab7f83eb30a8b8c9480fb34acdd6a1c562a1469483a08f5fbb6764",
+        "downloaded_job_request_version": 3,
+        "msa_bytes_match_original": true,
+        "request_settings_match_original": true,
+        "software_version_strings": [
+          "AlphaFold-beta-20231127 (d489b72d-c050-40c4-afa3-9bb895a4b9ca @ 2026-11-19 03:56:21)"
+        ],
+        "chemical_definitions": [
+          {
+            "sample": 0,
+            "ccd": "VX6",
+            "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+            "server_formal_charge": 0,
+            "original_formal_charge": 1,
+            "canonical_isomeric_smiles_equal": false
+          },
+          {
+            "sample": 1,
+            "ccd": "VX6",
+            "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+            "server_formal_charge": 0,
+            "original_formal_charge": 1,
+            "canonical_isomeric_smiles_equal": false
+          },
+          {
+            "sample": 2,
+            "ccd": "VX6",
+            "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+            "server_formal_charge": 0,
+            "original_formal_charge": 1,
+            "canonical_isomeric_smiles_equal": false
+          },
+          {
+            "sample": 3,
+            "ccd": "VX6",
+            "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+            "server_formal_charge": 0,
+            "original_formal_charge": 1,
+            "canonical_isomeric_smiles_equal": false
+          },
+          {
+            "sample": 4,
+            "ccd": "VX6",
+            "server_smiles": "Cc1cc([nH]n1)Nc2cc(nc(n2)Sc3ccc(cc3)NC(=O)C4CC4)N5CCN(CC5)C",
+            "server_formal_charge": 0,
+            "original_formal_charge": 1,
+            "canonical_isomeric_smiles_equal": false
+          }
+        ],
+        "files": {
+          "fold_personal_aurka_3e5a_vx680_tpx2_full_data_0.json": "b544cc9609a1b36c2d1465a57962165ffea8fd661d8748285c7f13d06106a03d",
+          "fold_personal_aurka_3e5a_vx680_tpx2_full_data_1.json": "d18490113311e2b3de7993465dec47bf16e271df76a25209e9752d7a723d9b22",
+          "fold_personal_aurka_3e5a_vx680_tpx2_full_data_2.json": "0bab789fe3d855be4f3a167059a9c9ef173ed1052bab28da3b4e27272137bdcd",
+          "fold_personal_aurka_3e5a_vx680_tpx2_full_data_3.json": "71e8de5d69bd7ce9e7ec964c847e72f482644c5b5992ede15124343a677b17bf",
+          "fold_personal_aurka_3e5a_vx680_tpx2_full_data_4.json": "b8d339b49f93cab58535180ea41787660810c4aa72788c17d9809b784764edae",
+          "fold_personal_aurka_3e5a_vx680_tpx2_job_request.json": "c690d27fc7d595c77b89c7020f704055d86d1146ed3cbe07cd238f2e5399c41c",
+          "fold_personal_aurka_3e5a_vx680_tpx2_model_0.cif": "13bf1d22ecf8456f5febecfcf72fd582ccd0eb58d2de6159e7218d3844975774",
+          "fold_personal_aurka_3e5a_vx680_tpx2_model_1.cif": "c941ce2a4a9e263061e3eb2de26574095ad5e878e8c3d47bd34de350cc7d2873",
+          "fold_personal_aurka_3e5a_vx680_tpx2_model_2.cif": "6c0f3e21bc8c6524e2849c7980d1712d4aafc23da4780a791ac38116b719267c",
+          "fold_personal_aurka_3e5a_vx680_tpx2_model_3.cif": "abc6cc216f812d7bed7f8349bb9a4283f50ee29e6d4dcae97eedb5aa3d0f01db",
+          "fold_personal_aurka_3e5a_vx680_tpx2_model_4.cif": "2d4743f9ef63fd8ded529d8735a05379c57bb26b709f1ffc38646e8424d22c0b",
+          "fold_personal_aurka_3e5a_vx680_tpx2_summary_confidences_0.json": "3b3dc3a7ca7db41c3eaae783bff1163cc07f2a066961398c3b8b9a0458b5d7e9",
+          "fold_personal_aurka_3e5a_vx680_tpx2_summary_confidences_1.json": "b257269cc788f19e5df60e1a9ffa6810e53d11c963e8492edac7f1a811980bff",
+          "fold_personal_aurka_3e5a_vx680_tpx2_summary_confidences_2.json": "50da662cd7c6ad98c5755da2e712ad41ba9ea16d6e31676d524f6a195cf8aa83",
+          "fold_personal_aurka_3e5a_vx680_tpx2_summary_confidences_3.json": "36107be123c8dfe94ac445aa2b0e10359329a88e48d6cef64801ba595ee9498d",
+          "fold_personal_aurka_3e5a_vx680_tpx2_summary_confidences_4.json": "05b400f612dec5dce426fc195d80945885bd7277b8aa1936fe76de136581a5d5",
+          "msas/fold_personal_aurka_3e5a_vx680_tpx2_unpaired_af3_personal_four_targets_json_msa_chains_a.a3m": "a628d330f4efabe1e435d5efb66a4d6ef350e7d7f64d194a636d04e2b97cb25c",
+          "msas/fold_personal_aurka_3e5a_vx680_tpx2_unpaired_af3_personal_four_targets_json_msa_chains_b.a3m": "51d67e64d99a106a9abae2a19e2fb6900a3ffcb5551c96eb465f96d92716b34d",
+          "terms_of_use.md": "1ae90834413742f5185041af2e1bc7982321e2938b3b0c5367e00edd34c61df4"
+        }
+      },
+      {
+        "case": "ERK2_4QTA_SCH772984",
+        "archive_sha256": "b2300673e251f6ac4d10efe8055eae0488ad57d2dbc93d035c91a507d4154547",
+        "downloaded_job_request_version": 3,
+        "msa_bytes_match_original": true,
+        "request_settings_match_original": true,
+        "software_version_strings": [
+          "AlphaFold-beta-20231127 (d489b72d-c050-40c4-afa3-9bb895a4b9ca @ 2026-11-19 03:56:20)"
+        ],
+        "chemical_definitions": [
+          {
+            "sample": 0,
+            "ccd": "38Z",
+            "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 1,
+            "ccd": "38Z",
+            "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 2,
+            "ccd": "38Z",
+            "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 3,
+            "ccd": "38Z",
+            "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          },
+          {
+            "sample": 4,
+            "ccd": "38Z",
+            "server_smiles": "c1cnc(nc1)c2ccc(cc2)N3CCN(CC3)C(=O)CN4CC[C@H](C4)C(=O)Nc5ccc6c(c5)c([nH]n6)c7ccncc7",
+            "server_formal_charge": 0,
+            "original_formal_charge": 0,
+            "canonical_isomeric_smiles_equal": true
+          }
+        ],
+        "files": {
+          "fold_personal_erk2_4qta_sch772984_full_data_0.json": "608f4028b2ffd8955917f698dad9b46cf626a1a8cb8e3d451aa8bfbe980f45fd",
+          "fold_personal_erk2_4qta_sch772984_full_data_1.json": "44e401d9d03256725c8aa5f7182d213b7b5a8e4332ccff814cd09fa0a5f76874",
+          "fold_personal_erk2_4qta_sch772984_full_data_2.json": "15b55b6732a0eb54d7583f9b40f6d20cc0c1ff7d02874240284aef7f06b628a8",
+          "fold_personal_erk2_4qta_sch772984_full_data_3.json": "0d9ef3c3579a48b14ba4609c532909a5b8500ed502dc80790f1b9bdedfc86827",
+          "fold_personal_erk2_4qta_sch772984_full_data_4.json": "16450090e7c3e4bccf8ec7f6d274be7e50b002993a6cbbbeff1363cb5160230c",
+          "fold_personal_erk2_4qta_sch772984_job_request.json": "d0d0f41135373f8bd369f5c06567a97ae271f8bf6353e684af42ded941339ba7",
+          "fold_personal_erk2_4qta_sch772984_model_0.cif": "092790cf27957025aa4dc45b27d0d52c5b299ffbccbf7883f87d84964b9c1959",
+          "fold_personal_erk2_4qta_sch772984_model_1.cif": "a7b4ce49f67f237f52a5fcec6e4264bbb7f1aca8e1bb6ae137e9f36570eae40e",
+          "fold_personal_erk2_4qta_sch772984_model_2.cif": "16eb1f1289c82a1dff53bced5cd1a7c529211d8f1ade827061699c9f43951237",
+          "fold_personal_erk2_4qta_sch772984_model_3.cif": "4f01ea972dac64b3b5a2bccdca183e106c8a0da262c30d46d71c585cdb329287",
+          "fold_personal_erk2_4qta_sch772984_model_4.cif": "bce7f70604afa9d3fa768c0cd35d2817e4529cbb3fb60487c0c579bde33b8c35",
+          "fold_personal_erk2_4qta_sch772984_summary_confidences_0.json": "a1ad03e962404965d049aaf15f824fd80eb6d45ba4f5088036bb1a8b05d6a761",
+          "fold_personal_erk2_4qta_sch772984_summary_confidences_1.json": "a1ad03e962404965d049aaf15f824fd80eb6d45ba4f5088036bb1a8b05d6a761",
+          "fold_personal_erk2_4qta_sch772984_summary_confidences_2.json": "a1ad03e962404965d049aaf15f824fd80eb6d45ba4f5088036bb1a8b05d6a761",
+          "fold_personal_erk2_4qta_sch772984_summary_confidences_3.json": "6e510a8cc2d7dbb7dfd77aa7454a72f61d32ed5856127ff24b6ddaeca0f0915b",
+          "fold_personal_erk2_4qta_sch772984_summary_confidences_4.json": "8505fc6ddecac16adff078a00c1c1051910333d78d30dfa4f52ce3b30dde0ebd",
+          "msas/fold_personal_erk2_4qta_sch772984_unpaired_af3_personal_four_targets_json_msa_chains_a.a3m": "cf7d31f518386511e9cb27ff5a8f66b40c5d96718a85dd4f85858f912c8447fa",
+          "terms_of_use.md": "1ae90834413742f5185041af2e1bc7982321e2938b3b0c5367e00edd34c61df4"
+        }
+      }
+    ]
+  },
+  "source_evidence_sha256": "5dfa4d4f0876b9acefac06f90f26ce27f15acd04a5bde8c3d3c060804e0a1825",
+  "source_analysis_sha256": {
+    "cells.json": "3eacfb916e90b8a3ed285dd8293e6044576c74f47ec6bea4084f164cc2213d91",
+    "samples.json": "76ac1bfe7aa34435d13dfa44ef55f5c06091ef2080fecf78273bf1a5eb3fbdbd"
+  }
+}
