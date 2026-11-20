@@ -1,6 +1,6 @@
 # Personal AlphaFold 3 Server comparison
 
-**Personal, non-commercial exploratory use only; separate from the original seven-model Flory benchmark. Not company research or a clean input-matched eight-model leaderboard.**
+**Personal, non-commercial exploratory use only. Shown in the same comparison table as the other seven models, but not company research or a fully input-matched eight-model leaderboard. The original seven-model data and AF3's separate usage restrictions are unchanged.**
 
 **This information is subject to AlphaFold Server Output Terms of Use found at https://alphafoldserver.com/output-terms**
 

@@ -1,8 +1,8 @@
 # Flory protein–ligand structure benchmark
 
-Interactive results for seven models across PPARγ, GCK, AURKA and ERK2, plus a separately labelled personal, non-commercial AlphaFold 3 Server comparison.
+Interactive results for eight models across PPARγ, GCK, AURKA and ERK2, with AlphaFold 3 Server included as a row in the same comparison table.
 
-In the original seven-model screen, Chai-1 and ESMFold2 were most consistent for ligand pose and chemistry; Protenix was close behind. This does not establish accurate partner-chain placement, dynamics or which model will fine-tune best. AF3 is not incorporated into that controlled comparison: its GCK exports are incomplete and its Aurora ligand charge differs.
+Chai-1 and ESMFold2 were most consistent for ligand pose and chemistry; Protenix was close behind. This does not establish accurate partner-chain placement, dynamics or which model will fine-tune best. AF3 appears alongside the other models, with footnotes for its incomplete GCK exports and differing Aurora ligand charge; this is not a fully input-matched ranking.
 
 Website: https://miyu-horiuchi.github.io/flory-structure-benchmark/
 
@@ -19,13 +19,13 @@ Website: https://miyu-horiuchi.github.io/flory-structure-benchmark/
 
 The site is published from the root of `main` using GitHub Pages, with no build step. The report loads the public design-system runtime from `static.devin.ai`; internet access is required. To preview locally, run `python3 -m http.server 8000` in this directory.
 
-First run `python3 src/prepare_data.py /path/to/combined-data.json`, with an output path outside the repository. Compile source edits using Devin's `html_artifact_compile`, with `src/report.body.html` as `body_path`, the combined JSON as `data_path`, and an output path outside the repository. Then run `python3 src/publish.py /path/to/compiled-report.html` to produce `index.html`. This preserves the compiled artifact while adding static metadata that WhatsApp and other non-JavaScript crawlers can read. Run publishing/data tests with `python3 -m unittest discover -s src -p 'test_*.py'`.
+First run `python3 src/prepare_data.py /path/to/combined-data.json`, with an output path outside the repository. Compile source edits using Devin's `html_artifact_compile`, with `src/report.body.html` as `body_path`, the combined JSON as `data_path`, and an output path outside the repository. Then run `python3 src/publish.py /path/to/compiled-report.html` to produce `index.html`. This preserves the compiled artifact while adding static metadata that WhatsApp and other non-JavaScript crawlers can read. Run publishing/data tests with `python3 -m unittest discover -s src -p 'test_*.py'`; Python 3 and Node.js on `PATH` are required for the frontend-data regression test.
 
 This retrospective structural/chemical screen used public complexes and is not a held-out functional or dynamics benchmark. No fine-tuning was performed. The report contains scoring provenance and the separate Aurora WT diagnostics.
 
 ## Personal AlphaFold 3 comparison
 
-The AF3 section is personal, non-commercial exploratory work, separate from the original Flory benchmark and not for company research. GitHub Pages is publicly accessible; a personal GitHub account does not make the page private or grant commercial rights. See [the comparison notes](personal-af3/README.md) for the GCK failure, AURKA chemistry difference, partner-placement caveat and citation.
+The AF3 row is personal, non-commercial exploratory work, not for company research. Displaying it in the same table does not change its separate usage restrictions or the original seven-model data. GitHub Pages is publicly accessible; a personal GitHub account does not make the page private or grant commercial rights. See [the comparison notes](personal-af3/README.md) for the GCK failure, AURKA chemistry difference, partner-placement caveat and citation.
 
 **This information is subject to AlphaFold Server Output Terms of Use found at https://alphafoldserver.com/output-terms**
 

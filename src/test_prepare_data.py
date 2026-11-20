@@ -1,5 +1,6 @@
 import copy
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -50,6 +51,40 @@ class PersonalComparisonTests(unittest.TestCase):
         self.personal["cells"][0]["selected_sample"] = 4
         with self.assertRaisesRegex(ValueError, "native confidence"):
             combine_data(self.original, self.personal)
+
+    def test_shared_chart_and_primary_inspector_include_all_eight_models(self) -> None:
+        root = Path(__file__).resolve().parent
+        source = (root / "report.body.html").read_text()
+        setup = source.split('<script type="text/jsx">', 1)[1].split("function Heading", 1)[0]
+        script = (
+            'const data = JSON.parse(require("fs").readFileSync(0,"utf8"));'
+            'const document = {};'
+            + setup
+            + '\nconsole.log(JSON.stringify({rows:comparisonRows,'
+            'primarySamples:allSamples.filter(r=>r.tier==="primary").length,'
+            'selectedPrimary:allSamples.filter(r=>r.tier==="primary"&&'
+            'chosen.has(`${r.model}|${r.case}|${r.sample}`)).length}));'
+        )
+        output = subprocess.run(
+            ["node", "-e", script],
+            input=json.dumps(combine_data(self.original, self.personal)),
+            text=True, capture_output=True, check=True,
+        )
+        result = json.loads(output.stdout)
+        self.assertEqual(len(result["rows"]), 8)
+        self.assertEqual(result["primarySamples"], 160)
+        self.assertEqual(result["selectedPrimary"], 32)
+        for row, model in zip(result["rows"][:7], self.original["models"]):
+            self.assertEqual(row["selectedPass"], model["selected_clean_cells"])
+            self.assertEqual(row["allPass"], model["clean_samples"])
+        af3 = result["rows"][-1]
+        self.assertEqual(af3["model"]["id"], "alphafold3_server")
+        self.assertEqual(af3["selectedPass"], 3)
+        self.assertEqual(af3["allPass"], 13)
+        self.assertEqual([c["clean_hits"] for c in af3["cells"]], [5, 0, 5, 3])
+        self.assertEqual([c["target"] for c in af3["cells"]], list(self.original["target_names"]))
+        self.assertEqual(af3["cells"][1]["scored_samples"], 0)
+        self.assertIsNone(af3["cells"][1]["selected_ligand_rmsd_a"])
 
 
 if __name__ == "__main__":

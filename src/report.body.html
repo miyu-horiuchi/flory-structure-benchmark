@@ -4,13 +4,17 @@ document.title = "Benchmark";
 const models = data.models;
 const af3 = data.personal_af3;
 const allModels = [...models, af3.model];
-const allSamples = [...data.samples, ...af3.samples];
+const allSamples = [...data.samples, ...af3.samples.map(r=>({...r,tier:"primary"}))];
 const af3Generated = af3.cells.reduce((n,c)=>n+c.generated_samples,0);
 const af3Scored = af3.cells.reduce((n,c)=>n+c.scored_samples,0);
 const af3Passed = af3.cells.reduce((n,c)=>n+c.clean_hits,0);
-const primary = data.cells.filter(c => c.tier === "primary");
+const primary = [...data.cells.filter(c => c.tier === "primary"), ...af3.cells];
 const diagnostics = data.cells.filter(c => c.tier !== "primary");
 const targets = Object.keys(data.target_names);
+const comparisonRows = allModels.map(model => {
+  const cells = targets.map(target=>primary.find(c=>c.model===model.id&&c.target===target));
+  return {model,cells,selectedPass:cells.filter(c=>c.selected_clean_hit).length,allPass:cells.reduce((n,c)=>n+c.clean_hits,0)};
+});
 const fmt = (v,n=2) => v === null || v === undefined ? "—" : Number(v).toFixed(n);
 const modelName = id => allModels.find(m => m.id === id)?.name || id;
 const chosen = new Set([...data.cells,...af3.cells].map(c => `${c.model}|${c.case}|${c.selected_sample}`));
@@ -26,57 +30,36 @@ function Report() {
   const [detail,setDetail] = useState(null);
   const [sort,setSort] = useState(null);
   const shown = useMemo(() => {
-    const rows = allSamples.filter(r => (scope === "all" || (scope === "diagnostic" ? r.tier !== "primary" && r.tier !== "personal_af3" : r.tier === scope)) && (model === "all" || r.model === model) && (target === "all" || r.target === target) && (view === "all" || chosen.has(`${r.model}|${r.case}|${r.sample}`)));
+    const rows = allSamples.filter(r => (scope === "all" || (scope === "diagnostic" ? r.tier !== "primary" : r.tier === scope)) && (model === "all" || r.model === model) && (target === "all" || r.target === target) && (view === "all" || chosen.has(`${r.model}|${r.case}|${r.sample}`)));
     return sort ? rows.sort((a,b) => ((a.ligand_rmsd_receptor_aligned_a ?? 1e6) - (b.ligand_rmsd_receptor_aligned_a ?? 1e6))*sort) : rows;
   },[model,target,scope,view,sort]);
   return <PageLayout themeToggle>
     <section className="border border-primary bg-tint-blue rounded-lg p-4">
       <Text size={17} weight="semibold">Chai-1 and ESMFold2 were most consistent for ligand pose and chemistry here; Protenix was close behind. This does not establish accurate partner-chain placement, dynamics or which model will fine-tune best.</Text>
-      <Text size={12} className="text-secondary mt-2">This conclusion refers to the original seven-model screen. The separate personal AlphaFold 3 comparison below has incomplete glucose outputs and an Aurora ligand-charge difference; it is not a clean eight-model ranking.</Text>
+      <Text size={12} className="text-secondary mt-2">AlphaFold 3 is included in the same table. Its incomplete glucose outputs and Aurora ligand-charge difference mean this is not a fully input-matched eight-model ranking.</Text>
     </section>
     <section className="space-y-4">
-      <Text as="h1" size={28} weight="semibold">Seven-model benchmark + personal AlphaFold 3 comparison</Text>
-      <Text className="text-secondary">PPARγ · GCK · AURKA · ERK2 · Original seven-model Flory stream 2 screen: 18 November 2026</Text>
-      <Text className="text-secondary">All seven implementations ran successfully, but plausible poses did not always preserve the supplied chemistry. This is a retrospective screen of public complexes—not a held-out leaderboard, a functional-state benchmark or a demonstration of fine-tuning.</Text>
-      <Text size={13}><a className="text-blue underline" href="#personal-af3">Added: personal, non-commercial AlphaFold 3 Server comparison · 20 predictions</a></Text>
+      <Text as="h1" size={28} weight="semibold">Eight protein–ligand models, four targets</Text>
+      <Text className="text-secondary">PPARγ · GCK · AURKA · ERK2 · Original seven models: 18 November 2026 · AlphaFold 3 Server: 19 November 2026</Text>
+      <Text className="text-secondary">All eight models generated predictions, but plausible poses did not always preserve the supplied chemistry. This is a retrospective screen of public complexes—not a held-out leaderboard, a functional-state benchmark or a demonstration of fine-tuning.</Text>
       <StatsRow>
-        <StatCard label="Model–target cells"><StatCardValue>{primary.length}</StatCardValue><StatCardCaption>{models.length} models × {targets.length} targets</StatCardCaption></StatCard>
-        <StatCard label="Primary structures scored"><StatCardValue>{data.samples.filter(r=>r.tier==="primary").length}</StatCardValue><StatCardCaption>Five samples per cell; seed 42</StatCardCaption></StatCard>
+        <StatCard label="Model–target cells"><StatCardValue>{primary.length}</StatCardValue><StatCardCaption>{allModels.length} models × {targets.length} targets</StatCardCaption></StatCard>
+        <StatCard label="Primary predictions generated"><StatCardValue>{allSamples.filter(r=>r.tier==="primary").length}</StatCardValue><StatCardCaption>{data.samples.filter(r=>r.tier==="primary").length+af3Scored} scorable; seed 42</StatCardCaption></StatCard>
         <StatCard label="Separate Aurora diagnostics"><StatCardValue>{data.samples.filter(r=>r.tier!=="primary").length}</StatCardValue><StatCardCaption>WT apo / WT + VX-680</StatCardCaption></StatCard>
       </StatsRow>
     </section>
 
-    <section className="space-y-3">
+    <section id="personal-af3" className="space-y-3">
       <Heading>Pose accuracy and chemical fidelity are different tests</Heading>
       <Text size={13} className="text-secondary">Selected ligand heavy-atom RMSD in Å after receptor alignment; no ligand-only fit. Shading is the combined screen, not RMSD alone. The small line reports passing samples from all five outputs.</Text>
       <Table stickyFirstColumn wrapText><TableHeader><TableRow><TableHead>Model</TableHead>{targets.map(t=><TableHead key={t}>{data.target_names[t]}</TableHead>)}<TableHead>Selected pass / 4</TableHead><TableHead>All pass / 20</TableHead></TableRow></TableHeader>
-        <TableBody>{models.map(m=><TableRow key={m.id}><TableCell><ExternalLink href={m.url}>{m.name}</ExternalLink></TableCell>{targets.map(t=>{const c=primary.find(c=>c.model===m.id&&c.target===t);return <TableCell key={t} className={c.selected_clean_hit?"bg-tint-green":"bg-tint-red"}><Text weight="semibold">{fmt(c.selected_ligand_rmsd_a)}</Text><Text size={11} className="text-secondary">{c.clean_hits}/5 pass{c.wrong_chirality_samples?` · stereo flags ${c.wrong_chirality_samples}`:""}</Text></TableCell>;})}<TableCell>{m.selected_clean_cells}</TableCell><TableCell>{m.clean_samples}</TableCell></TableRow>)}</TableBody>
+        <TableBody>{comparisonRows.map(({model:m,cells,selectedPass,allPass})=><TableRow key={m.id}><TableCell><ExternalLink href={m.url}>{m.name}{m.id===af3.model.id?"*":""}</ExternalLink></TableCell>{cells.map(c=><TableCell key={c.target} className={c.scored_samples===0?"bg-tint-orange":c.selected_clean_hit?"bg-tint-green":"bg-tint-red"}><Text weight="semibold">{c.scored_samples===0?"Not scorable":fmt(c.selected_ligand_rmsd_a)}{m.id===af3.model.id&&c.target==="AURKA"?"†":""}</Text><Text size={11} className="text-secondary">{c.clean_hits}/5 pass{c.scored_samples===0?" · missing O1":c.wrong_chirality_samples?` · stereo flags ${c.wrong_chirality_samples}`:""}</Text></TableCell>)}<TableCell>{selectedPass}</TableCell><TableCell>{allPass}</TableCell></TableRow>)}</TableBody>
       </Table>
       <Text size={12} className="text-secondary">Combined screen: RMSD &lt; 2 Å, lDDT-PLI-style &gt; 0.8, no wrong specified ligand stereocentres, and no ligand–protein pairs within 0.60 × summed van der Waals radii. Not full physicality certification. Native confidence selects outputs except ESMFold2’s declared iPTM rule and BioEmu-2 sample 0. Native scales are not compared across models.</Text>
-    </section>
-
-    <section id="personal-af3" className="space-y-4 border border-primary rounded-lg p-4">
-      <Heading>AlphaFold 3 Server · separate personal comparison</Heading>
-      <Badge>Personal · non-commercial · 19 November 2026</Badge>
-      <Text size={13}>Twenty additional native predictions, evaluated with the frozen version-3 pose-and-chemistry screen. These results are separate from the original seven-model Flory benchmark and are not for company research.</Text>
-      <div className="bg-tint-orange rounded-lg p-3 space-y-2">
-        <Text size={13} weight="semibold">This information is subject to AlphaFold Server Output Terms of Use found at <ExternalLink href="https://alphafoldserver.com/output-terms">https://alphafoldserver.com/output-terms</ExternalLink></Text>
-        <Text size={12}>AF3 output and derivatives retain their separate restrictions: no commercial/company use, automated docking or interaction-screening systems, or training similar biomolecular structure-prediction models. <ExternalLink href="personal-af3/output-terms.txt">Read the preserved full terms</ExternalLink>. Personal GitHub hosting does not change these restrictions.</Text>
-      </div>
-      <StatsRow>
-        <StatCard label="AF3 predictions"><StatCardValue>{af3Generated}</StatCardValue><StatCardCaption>Four targets × five samples</StatCardCaption></StatCard>
-        <StatCard label="Complete / scorable"><StatCardValue>{af3Scored}/{af3Generated}</StatCardValue><StatCardCaption>Five GCK exports omit O1</StatCardCaption></StatCard>
-        <StatCard label="Strict screen passes"><StatCardValue>{af3Passed}/{af3Generated}</StatCardValue><StatCardCaption>{af3Passed}/{af3Scored} among scorable outputs</StatCardCaption></StatCard>
-      </StatsRow>
-      <Table wrapText><TableHeader><TableRow><TableHead>Target</TableHead><TableHead>Selected ligand RMSD Å</TableHead><TableHead>Selected pocket RMSD Å</TableHead><TableHead>Selected lDDT-PLI-style</TableHead><TableHead>Strict pass / generated</TableHead><TableHead>Scorable</TableHead></TableRow></TableHeader><TableBody>{targets.map(t=>{const c=af3.cells.find(c=>c.target===t);return <TableRow key={t}><TableCell>{data.target_names[t]}</TableCell><TableCell className={c.scored_samples===0?"bg-tint-orange":c.selected_clean_hit?"bg-tint-green":"bg-tint-red"}>{c.scored_samples===0?"Not scorable · missing O1":fmt(c.selected_ligand_rmsd_a)}</TableCell><TableCell>{fmt(c.selected_pocket_rmsd_a)}</TableCell><TableCell>{fmt(c.selected_lddt_pli_style,3)}</TableCell><TableCell>{c.clean_hits}/{c.generated_samples}{c.scored_samples===0?" · incomplete, not a pose verdict":""}</TableCell><TableCell>{c.scored_samples}/{c.generated_samples}</TableCell></TableRow>;})}</TableBody></Table>
-      <div className="border-l-2 border-primary pl-4 space-y-3">
-        <div><Text weight="semibold">GCK: missing oxygen, not a measured poor pose</Text><Text size={13} className="text-secondary">All five exported glucose ligands contain 11 heavy atoms instead of 12: O1 is missing. No oxygen was reconstructed and no partial-ligand RMSD was substituted. These five remain explicit evaluation errors, not five measured pose failures.</Text></div>
-        <div><Text weight="semibold">AURKA: not an identical ligand input</Text><Text size={13} className="text-secondary">Server CCD VX6 is neutral, whereas the earlier benchmark used a +1 VX-680 form; canonical isomeric SMILES differ. Native phospho-Thr288 and TPX2 were retained, but this chemistry difference prevents a clean matched Aurora ranking.</Text></div>
-        <div><Text weight="semibold">Close ligand poses do not establish correct partner placement</Text><Text size={13} className="text-secondary">The selected PPARγ SRC-1 partner is {fmt(af3.cells.find(c=>c.target==="PPARG").selected_partner_ca_rmsd_a)} Å from its reference after receptor alignment, despite the good ligand pose. Selected AURKA TPX2 is {fmt(af3.cells.find(c=>c.target==="AURKA").selected_partner_ca_rmsd_a)} Å. Two non-selected ERK2 predictions have severe clashes.</Text></div>
-      </div>
-      <Text size={12} className="text-secondary">Seed 42; five native samples per target; coordinate-free sequences, partner chains and PTMs retained; frozen shared unpaired MSAs verified byte-for-byte; templates disabled. Highest native ranking_score selects before geometry screening, with lower-index tie-breaking; sample 0 was selected for all four cases. No functional state, kinetics, thermodynamics or fine-tuning suitability is established.</Text>
-      <Button size="sm" variant="secondary" onClick={()=>{setScope("personal_af3");setModel("all");setTarget("all");setView("all");setDetail(null);document.getElementById("prediction-details").scrollIntoView({behavior:"smooth"});}}>Inspect all {af3Generated} AF3 samples</Button>
-      <CollapsibleRoot><CollapsibleTrigger>AF3 provenance, hashes and citation</CollapsibleTrigger><CollapsiblePanel><div className="space-y-3 pt-3"><Text size={12}><ExternalLink href="personal-af3/results.json">Results and provenance JSON</ExternalLink> · <ExternalLink href="personal-af3/README.md">Personal-comparison notes</ExternalLink> · <ExternalLink href="https://doi.org/10.1038/s41586-024-07487-w">Abramson et al., Nature (2024)</ExternalLink>. No Google endorsement is implied. Raw coordinates are not redistributed on this page.</Text><CodeBlock code={JSON.stringify({notice:af3.notice,input:af3.input_manifest,output:af3.output_manifest,source_evidence_sha256:af3.source_evidence_sha256},null,2)}/></div></CollapsiblePanel></CollapsibleRoot>
+      <Text size={12} className="text-secondary">* AF3: {af3Passed}/{af3Generated} generated predictions passed ({af3Passed}/{af3Scored} scorable). All five GCK exports omit glucose O1: 11 heavy atoms instead of 12. They remain unscorable, not measured poor poses; no atoms were repaired. Two ERK2 samples have severe clashes.</Text>
+      <Text size={12} className="text-secondary">† AF3 AURKA uses neutral CCD VX6; the other models used +1 VX-680. Native pThr288 and TPX2 were retained, but the ligand input is not chemically identical.</Text>
+      <Text size={12}>AF3 outputs are personal/non-commercial, not for company use. This information is subject to AlphaFold Server Output Terms of Use found at <ExternalLink href="https://alphafoldserver.com/output-terms">https://alphafoldserver.com/output-terms</ExternalLink>. <ExternalLink href="personal-af3/output-terms.txt">Preserved full terms</ExternalLink> · <ExternalLink href="https://doi.org/10.1038/s41586-024-07487-w">Abramson et al., Nature (2024)</ExternalLink>.</Text>
+      <CollapsibleRoot><CollapsibleTrigger>AF3 protocol and provenance</CollapsibleTrigger><CollapsiblePanel><div className="space-y-3 pt-3"><Text size={12}>Seed 42; five native samples per target; coordinate-free sequences, partner chains and PTMs retained; frozen shared unpaired MSAs verified byte-for-byte; templates disabled. Highest native ranking_score selects before screening, with lower-index tie-breaking; sample 0 was selected for all four targets. Selected PPARγ SRC-1 partner RMSD is {fmt(af3.cells.find(c=>c.target==="PPARG").selected_partner_ca_rmsd_a)} Å, and AURKA TPX2 is {fmt(af3.cells.find(c=>c.target==="AURKA").selected_partner_ca_rmsd_a)} Å, after receptor alignment. No functional-state, dynamics or fine-tuning conclusions follow.</Text><Text size={12}><ExternalLink href="personal-af3/results.json">Results and provenance JSON</ExternalLink> · <ExternalLink href="personal-af3/README.md">Comparison notes</ExternalLink>. No Google endorsement is implied. Raw coordinates are not redistributed on this page.</Text><CodeBlock code={JSON.stringify({notice:af3.notice,input:af3.input_manifest,output:af3.output_manifest,source_evidence_sha256:af3.source_evidence_sha256},null,2)}/></div></CollapsiblePanel></CollapsibleRoot>
     </section>
 
     <section className="space-y-3">
@@ -91,7 +74,7 @@ function Report() {
     <section id="prediction-details" className="space-y-3">
       <Heading>Inspect every prediction</Heading>
       <div className="flex flex-wrap items-center gap-3">
-        <SimpleSelect value={scope} onValueChange={setScope} options={[{value:"primary",label:"Original primary complexes"},{value:"personal_af3",label:"Personal AlphaFold 3"},{value:"diagnostic",label:"Aurora diagnostics"},{value:"all",label:"All scopes"}]}/>
+        <SimpleSelect value={scope} onValueChange={setScope} options={[{value:"primary",label:"Primary complexes"},{value:"diagnostic",label:"Aurora diagnostics"},{value:"all",label:"All scopes"}]}/>
         <SimpleSelect value={model} onValueChange={setModel} options={[{value:"all",label:"All models"},...allModels.map(m=>({value:m.id,label:m.name}))]}/>
         <SimpleSelect value={target} onValueChange={setTarget} options={[{value:"all",label:"All targets"},...targets.map(t=>({value:t,label:data.target_names[t]}))]}/>
         <SimpleSelect value={view} onValueChange={setView} options={[{value:"selected",label:"Selected outputs"},{value:"all",label:"All five samples"}]}/>
@@ -100,7 +83,7 @@ function Report() {
       <Table stickyHeader stickyFirstColumn viewportClassName="max-h-96" scrollOrientation="both"><TableHeader><TableRow><TableHead>Model / complex</TableHead><TableHead>Sample</TableHead><SortableTableHead sort={sort===null?undefined:sort===1?"asc":"desc"} onSort={()=>setSort(sort===1?-1:1)}>Ligand RMSD Å</SortableTableHead><TableHead>Receptor Cα Å</TableHead><TableHead>Pocket Å</TableHead><TableHead>lDDT-PLI-style</TableHead><TableHead>Stereo</TableHead><TableHead>Severe pairs</TableHead><TableHead>Evidence</TableHead></TableRow></TableHeader>
         <TableBody>{shown.map(r=><TableRow key={`${r.model}|${r.case}|${r.sample}`}><TableCell><Text size={13}>{modelName(r.model)}</Text><Text size={11} className="text-secondary">{title(r)}</Text></TableCell><TableCell>{r.sample}</TableCell><TableCell>{r.evaluation_status==="evaluation_error"?"Not scorable":fmt(r.ligand_rmsd_receptor_aligned_a)}</TableCell><TableCell>{fmt(r.receptor_ca_rmsd_a)}</TableCell><TableCell>{fmt(r.pocket_heavy_rmsd_receptor_aligned_a)}</TableCell><TableCell>{fmt(r.lddt_pli_style_ref15a,3)}</TableCell><TableCell>{r.evaluation_status==="evaluation_error"?"Not scorable":r.stereochemistry_matches_input===null||r.stereochemistry_matches_input===undefined?"Not specified":r.stereochemistry_matches_input?"Retained":"Mismatch"}</TableCell><TableCell>{r.ligand_protein_vdw060_pairs??"—"}</TableCell><TableCell><Button size="sm" variant="secondary" onClick={()=>setDetail(r)}>Details</Button></TableCell></TableRow>)}</TableBody>
       </Table>
-      {!shown.length&&<Text size={13}>No matching predictions. Select Personal AlphaFold 3 to inspect AF3; Aurora diagnostics are available only for AURKA.</Text>}
+      {!shown.length&&<Text size={13}>No matching predictions. Aurora diagnostics are available only for AURKA and were not run for AF3.</Text>}
       {detail&&<Card><CardContent><CardBody><div className="flex justify-between items-center mb-3"><Text weight="semibold">{modelName(detail.model)} · {title(detail)} · sample {detail.sample}</Text><Button size="sm" variant="ghost" onClick={()=>setDetail(null)}>Close</Button></div><Text size={12} className="text-secondary mb-2">The exact CIF and SHA-256 locate this structure in the archive. Missing confidence is not invented.</Text>{detail.model===af3.model.id&&<Text size={12} className="text-secondary mb-2">{af3.notice}</Text>}<CodeBlock code={JSON.stringify({cif:detail.file,sha256:detail.sha256,evaluation_status:detail.evaluation_status,error:detail.error,ligand_atom_inventory:detail.ligand_atom_inventory,chemical_input_comparison:detail.chemical_input_comparison,ranking_metric:detail.ranking_metric||"First sample; no native confidence rank",confidence:detail.confidence_scalars||"Not provided",combined_screen:detail.clean_screen_hit,chain_assignment:detail.chain_assignment,pThr_attachment:detail.modification_checks,stereocentres:detail.stereocentre_cip_comparison,bond_length_outliers:detail.ligand_bond_length_outliers},null,2)}/></CardBody></CardContent></Card>}
     </section>
 
