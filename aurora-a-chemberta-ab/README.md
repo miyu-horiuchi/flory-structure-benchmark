@@ -1,8 +1,12 @@
 # Aurora A ChemBERTa A/B
 
-This is a held-out functional comparison, separate from the parent repository’s structure benchmark. The independent primary endpoint is pKd in the human Aurora A Kinobeads binding assay [CHEMBL3991630](https://www.ebi.ac.uk/chembl/assay_report_card/CHEMBL3991630/) (15 compounds, 14 scaffold folds). No comparable independent numeric endpoint was found for all 24 compounds. The Lake no-TPX2 pKd sensitivity covers 24 compounds and 23 folds, but is circular: its label shares the global fit for the cooperativity feature. Do not treat it as independent evidence. A null on the small primary panel is uninformative.
+This is a held-out functional comparison, separate from the parent repository’s structure benchmark. The sealed primary endpoint is independent pKd in the human Aurora A Kinobeads binding assay [CHEMBL3991630](https://www.ebi.ac.uk/chembl/assay_report_card/CHEMBL3991630/) (15 compounds, 14 scaffold folds). The decision rule did not resolve a Model B benefit at this size; that is not evidence against cooperativity or dynamics. No comparable independent numeric endpoint was found for all 24 compounds. The Lake no-TPX2 pKd sensitivity covers 24 compounds and 23 folds, but is circular: its label shares the global fit for the cooperativity feature.
 
 Model A is ligand-only, matching PPARγ. Model B adds only training-fold-standardised log10(cooperativity); there were no eligible geometry or HDX columns. The LoRA comparison is primary; frozen ChemBERTa supports it. Controls are the training-fold mean, cooperativity alone, ten row shuffles and ten Gaussian shams. Reproduction by a sham rules out attributing a gain to cooperativity. See the sealed [prespec](PRESPEC.md) and [source notes](data/README.md).
+
+On singleton folds the training mean decreases as the held-out label rises, so the primary fold-mean-only ρ of −0.9991 is expected arithmetic, not a model diagnostic. Model A’s correlation with that mean was 0.5170 (LoRA) and 0.5796 (frozen). At or above the real Δρ were 0/10 shuffled and 1/10 Gaussian draws for LoRA, and 8/10 shuffled and 9/10 Gaussian draws for frozen.
+
+The protocol owner’s power analysis found that the unchanged rule fires 38% of the time at n=26 when the true Δρ is exactly 0.3; regrouping moved that by under one percentage point. CI-excludes-zero alone had 31% power at n=26 and required about 104 compounds for 80% power. Grouped k-fold is a comparability analysis, not a rescue, and does not replace the sealed headline.
 
 ## Rerun
 

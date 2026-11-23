@@ -241,6 +241,7 @@ def fmt(x):
 def results_markdown(results):
     primary = results["labels"].get("primary")
     exploratory = results.get("exploratory")
+    power = []
     headline = (f"**Primary LoRA interpretation:** {primary['variants']['lora']['decision']}. "
                 "The numerical bar is necessary, not sufficient."
                 if primary else "**Lake-coupled sensitivity only.** This report is not independent evidence.")
@@ -253,29 +254,40 @@ def results_markdown(results):
                     + exploratory["assignment"])
     elif primary:
         lora = primary["variants"]["lora"]
+        frozen = primary["variants"]["frozen"]
+        lora_controls, frozen_controls = (cell["controls"] for cell in (lora, frozen))
         if not lora["clears_numerical_bar"]:
-            gauss = lora["controls"]["shams"]["gaussian"]["n_at_or_above_real_delta"]
-            headline = ("**No Model B benefit was demonstrated.** The primary LoRA result is below the prespecified "
-                        f"bar (Δρ {fmt(lora['delta_spearman'])}, required ≥0.3) and uninformative at n={primary['n']}. "
-                        + (f"{gauss}/10 Gaussian shams matched or exceeded this positive gain, so it cannot be "
-                           "attributed to cooperativity. " if gauss and (lora["delta_spearman"] or 0) > 0 else "")
-                        + "This is not evidence that dynamics do not help.")
-        lora_controls = lora["controls"]
+            headline = (f"**The sealed decision rule did not resolve a Model B benefit at n={primary['n']}.** "
+                        f"The primary LoRA Δρ was {fmt(lora['delta_spearman'])}; the rule requires Δρ ≥0.3 and a "
+                        "positive lower 95% confidence bound. This result is not evidence against cooperativity or dynamics.")
         singleton_count = sum(fold["n"] == 1 for fold in lora["arms"]["A"]["per_fold"])
-        distances = [value["rmse_pkd"] for cell in primary["variants"].values()
-                     for value in (cell["controls"]["model_a_diagnostics"]["agreement_with_fold_mean"],
-                                   cell["controls"]["model_b_agreement_with_fold_mean"])]
         fold_mean = lora_controls["fold_mean"]
         baseline = (f"{singleton_count} of {primary['fold_count']} occupied primary folds contain one compound. "
                     f"The fold-mean-only predictor scores ρ {fmt(fold_mean['spearman'])}: on singleton folds, "
-                    "holding out a higher pKd makes the training mean lower by construction. The two arms' "
-                    f"distances to those means are small ({fmt(min(distances))}–{fmt(max(distances))} pKd RMSE, "
-                    f"versus {fmt(fold_mean['rmse_pkd'])} pKd for the fold mean against observed labels). "
-                    "The negative pooled correlations are consistent with this leave-one-out artifact, not "
-                    "evidence of anti-prediction. Proximity in pKd does not imply that Model A passes the separate "
-                    "rank-tracking diagnostic below.")
+                    "holding out a higher pKd makes the training mean lower by construction. This arithmetic "
+                    "property is expected and does not diagnose model failure or anti-prediction.")
+        correlations = [fmt(c["model_a_diagnostics"]["agreement_with_fold_mean"]["spearman"])
+                        for c in (lora_controls, frozen_controls)]
+        sham_tallies = []
+        for controls in (lora_controls, frozen_controls):
+            counts = [controls["shams"][block]["n_at_or_above_real_delta"] for block in SHAMS]
+            rates = ["undefined" if count is None else f"{count}/10" for count in counts]
+            sham_tallies.append(f"{rates[0]} shuffled and {rates[1]} Gaussian")
+        power = [
+            f"Model A’s rank correlation with the training-fold mean is {correlations[0]} for LoRA and "
+            f"{correlations[1]} for frozen. Sham draws at or above the real Δρ: {sham_tallies[0]} for LoRA; "
+            f"{sham_tallies[1]} for frozen."
+            + (" The positive LoRA gain is not attributable to cooperativity."
+               if lora["decision"].startswith("Sham reproduced") else ""),
+            "",
+            "In the protocol owner’s power analysis, the unchanged decision rule fired 38% of the time at n=26 "
+            "with a planted true Δρ of exactly 0.3. Regrouping folds changed this by less than one percentage point. "
+            "The CI-excludes-zero condition alone had 31% power at n=26 and needed about 104 compounds for 80% power. "
+            "At n=15 the sealed result is unresolved; grouped k-fold is a comparability analysis, not a rescue.",
+            "",
+        ]
     else:
-        baseline = "Pooling predictions from singleton folds can reflect the training-mean artifact rather than compound ranking."
+        baseline = "A singleton fold has no within-fold rank correlation."
     lines = [
         "# Aurora A ChemBERTa A/B",
         "",
@@ -283,6 +295,7 @@ def results_markdown(results):
         "",
         baseline,
         "",
+        *power,
         "**Sealed primary:** The n=15 panel is underpowered for the 0.3 Δrho bar. A null is uninformative, not evidence of no effect.",
         "",
         "Model A is a ligand-only baseline, matching PPARγ: no geometry columns survive. PXD062561 has 0/24 ligand-resolved HDX coverage. Model B therefore adds only training-fold-standardised log10(cooperativity α); no substitutes or predicted complexes were used. SNS-314 remains included despite its poorly constrained α (only a lower bound >10 could be established).",
