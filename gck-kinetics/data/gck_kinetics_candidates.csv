@@ -1,0 +1,3 @@
+compound_name,smiles,source,chembl_id,available_evidence,reason
+GKRP disrupter 12,O=S(=O)(N[C@@H](c1cc2ccccc2s1)c1ccccc1Cl)c1ccc2c(c1)OCCCO2,10.1021/acs.jmedchem.5b01367,CHEMBL3746456,human GCK SPR Kd > 10000.0 nM,No human GCK association/dissociation rates verified; affinity alone is not kinetics.
+GKRP disrupter 6,O=S(=O)(NC(c1ccccc1)c1cc2ccccc2o1)c1ccc2c(c1)OCCCO2,10.1021/acs.jmedchem.5b01367,CHEMBL3746823,human GCK SPR Kd > 20000.0 nM,No human GCK association/dissociation rates verified; affinity alone is not kinetics.
