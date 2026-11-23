@@ -1,0 +1,7 @@
+.hf/
+.venv/
+build/
+run/
+results/checks*.json
+results/metrics-*.json
+results/results-*.md
