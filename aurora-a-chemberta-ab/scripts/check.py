@@ -119,8 +119,9 @@ def check_training(prepared, training, workspace, labels_selected):
             train_ids = sorted(set(labels) - set(held))
             assert not set(held).intersection(train_ids)
             assert set(held).union(train_ids) == set(labels)
-            assert all(other["scaffold"] != fold["scaffold"] for other in prepared["folds"]
-                       if set(train_ids).intersection(other["members"][label]))
+            for scaffold in prepared.get("scaffolds", prepared["folds"]):
+                members = set(scaffold["members"][label])
+                assert not (members.intersection(train_ids) and members.intersection(held))
             poisoned_labels = labels | {name: 100000.0 + i for i, name in enumerate(held)}
             expected_steps = EPOCHS * math.ceil(len(train_ids) / BATCH)
             for arm in FIT_ARMS:
@@ -135,14 +136,14 @@ def check_training(prepared, training, workspace, labels_selected):
                 assert fold_data.test_ids == poisoned.test_ids == tuple(held)
                 assert input_sha(fold_data) == input_sha(poisoned)
                 assert torch.equal(fold_data.test_pytorch_feature, poisoned.test_pytorch_feature)
-                for ids, features in ((train_ids, fold_data.train_pytorch_feature),
-                                      (held, fold_data.test_pytorch_feature)):
+                for ids, tensor in ((train_ids, fold_data.train_pytorch_feature),
+                                    (held, fold_data.test_pytorch_feature)):
                     values = np.array([features[name] for name in ids])
                     stats = expected["dynamics"]
                     expected_values = np.zeros_like(values) if arm == "A" else (values - stats["mean"]) / stats["sd"]
-                    assert np.allclose(features.numpy().ravel(), expected_values, rtol=1e-6, atol=1e-7)
+                    assert np.allclose(tensor.numpy().ravel(), expected_values, rtol=1e-6, atol=1e-7)
                     if arm == "A":
-                        assert torch.count_nonzero(features).item() == 0
+                        assert torch.count_nonzero(tensor).item() == 0
 
                 for variant in VARIANTS:
                     for seed in SEEDS:

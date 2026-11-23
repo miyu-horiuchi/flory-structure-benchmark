@@ -4,8 +4,8 @@ import numpy as np
 from scipy.stats import rankdata
 
 from common import (
-    ARMS, BOOTSTRAP_N, LABELS, RESULTS, RUN, SEEDS, SHAMS, VARIANTS, read_json, read_prepared, run_scope,
-    sha256, write_json,
+    ARMS, BOOTSTRAP_N, GROUPED_OUTPUTS, GROUPED_PLANS, LABELS, RESULTS, RUN, SEEDS, SHAMS, VARIANTS,
+    read_json, read_prepared, run_scope, sha256, write_json,
 )
 
 
@@ -94,7 +94,7 @@ def mean_oof(prepared, training, label, variant, arm, members):
     return predictions, predictions.mean(axis=0)
 
 
-def control_metrics(prepared, training, label, variant, members, folds, y, a, rho_a, delta):
+def control_metrics(prepared, training, label, variant, members, folds, y, a, b, rho_a, delta):
     truth = prepared["labels"][label]
     fold_diagnostics = []
     fold_means = np.empty_like(y)
@@ -118,6 +118,7 @@ def control_metrics(prepared, training, label, variant, members, folds, y, a, rh
         "features_only": metrics(y, features_only, pooled=True),
         "shams": {},
         "model_a_diagnostics": {"agreement_with_fold_mean": tracks, "per_fold": fold_diagnostics},
+        "model_b_agreement_with_fold_mean": metrics(fold_means, b),
     }
     for block, arms in SHAMS.items():
         draws = []
@@ -153,16 +154,20 @@ def interpretation(label, delta, clears, controls):
 def evaluate(prepared, training, labels=LABELS, suffix=""):
     assert training["prespec_sha256"] == prepared["prespec_sha256"]
     assert training["prepared_sha256"] == sha256(RUN / "prepared.json")
+    scaffolds = prepared.get("scaffolds", prepared["folds"])
     results = {
         "prespec_sha256": prepared["prespec_sha256"], "source_manifest_sha256": prepared["source_manifest_sha256"],
         "training_sha256": sha256(RUN / f"training{suffix}.json"),
         "model_revision": training["model"]["revision"], "seed_order": SEEDS,
         "geometry_columns": prepared["geometry_columns"], "model_b_dynamics_columns": prepared["dynamics_columns"],
-        "scaffold_count": len(prepared["folds"]), "scaffolds": prepared["folds"],
+        "scaffold_count": len(scaffolds), "scaffolds": scaffolds,
         "hdx": {"accession": "PXD062561", "covered": 0, "n": 24},
         "sns314": "Retained; mean alpha 122 poorly constrained, lower bound alpha > 10 (Lake SI Fig. S10).",
         "labels": {},
     }
+    if "exploratory" in prepared:
+        results["exploratory"] = prepared["exploratory"]
+        results["grouped_folds"] = prepared["folds"]
     for label in labels:
         truth = prepared["labels"][label]
         members = sorted(truth)
@@ -202,12 +207,30 @@ def evaluate(prepared, training, labels=LABELS, suffix=""):
             boot = paired_bootstrap(y, pooled["A"], pooled["B"])
             lower = boot["ci95"][0]
             clears = delta is not None and delta >= 0.3 and lower is not None and lower > 0
-            controls = control_metrics(prepared, training, label, variant, members, folds, y, pooled["A"], a, delta)
+            controls = control_metrics(prepared, training, label, variant, members, folds, y,
+                                       pooled["A"], pooled["B"], a, delta)
             entry["variants"][variant] = {
                 "arms": arms, "delta_spearman": delta, "bootstrap": boot, "clears_numerical_bar": clears,
                 "controls": controls, "decision": interpretation(label, delta, clears, controls),
             }
         results["labels"][label] = entry
+    if labels == LABELS:
+        sensitivities = {}
+        for label, directory in GROUPED_OUTPUTS.items():
+            grouped = RESULTS / directory
+            if not (grouped / "checks.json").is_file():
+                continue
+            check = read_json(grouped / "checks.json")
+            grouped_metrics = grouped / "metrics.json"
+            assert check["status"] == "passed" and check["metric_results_sha256"] == sha256(grouped_metrics)
+            sensitivity = read_json(grouped_metrics)
+            for key in ("prespec_sha256", "source_manifest_sha256", "model_revision"):
+                assert sensitivity[key] == results[key]
+            assert list(sensitivity["labels"]) == [label]
+            assert sensitivity["exploratory"]["plan_sha256"] == sha256(GROUPED_PLANS[label])
+            sensitivities[label] = sensitivity
+        if sensitivities:
+            results["exploratory_grouped"] = sensitivities
     return results
 
 
@@ -217,15 +240,50 @@ def fmt(x):
 
 def results_markdown(results):
     primary = results["labels"].get("primary")
+    exploratory = results.get("exploratory")
     headline = (f"**Primary LoRA interpretation:** {primary['variants']['lora']['decision']}. "
                 "The numerical bar is necessary, not sufficient."
                 if primary else "**Lake-coupled sensitivity only.** This report is not independent evidence.")
+    if exploratory:
+        headline = (f"**Post-hoc exploratory sensitivity, added {exploratory['added_utc']} UTC.** "
+                    "The sealed leave-one-scaffold-out primary remains the headline regardless of this result.")
+        sizes = [len(next(iter(fold["members"].values()))) for fold in results["grouped_folds"]]
+        baseline = (f"{len(sizes)} folds with {', '.join(map(str, sizes))} held-out compounds. "
+                    + ("Four Lake folds achieve exact equality; five cannot evenly divide 24 compounds. " if not primary else "")
+                    + exploratory["assignment"])
+    elif primary:
+        lora = primary["variants"]["lora"]
+        if not lora["clears_numerical_bar"]:
+            gauss = lora["controls"]["shams"]["gaussian"]["n_at_or_above_real_delta"]
+            headline = ("**No Model B benefit was demonstrated.** The primary LoRA result is below the prespecified "
+                        f"bar (Δρ {fmt(lora['delta_spearman'])}, required ≥0.3) and uninformative at n={primary['n']}. "
+                        + (f"{gauss}/10 Gaussian shams matched or exceeded this positive gain, so it cannot be "
+                           "attributed to cooperativity. " if gauss and (lora["delta_spearman"] or 0) > 0 else "")
+                        + "This is not evidence that dynamics do not help.")
+        lora_controls = lora["controls"]
+        singleton_count = sum(fold["n"] == 1 for fold in lora["arms"]["A"]["per_fold"])
+        distances = [value["rmse_pkd"] for cell in primary["variants"].values()
+                     for value in (cell["controls"]["model_a_diagnostics"]["agreement_with_fold_mean"],
+                                   cell["controls"]["model_b_agreement_with_fold_mean"])]
+        fold_mean = lora_controls["fold_mean"]
+        baseline = (f"{singleton_count} of {primary['fold_count']} occupied primary folds contain one compound. "
+                    f"The fold-mean-only predictor scores ρ {fmt(fold_mean['spearman'])}: on singleton folds, "
+                    "holding out a higher pKd makes the training mean lower by construction. The two arms' "
+                    f"distances to those means are small ({fmt(min(distances))}–{fmt(max(distances))} pKd RMSE, "
+                    f"versus {fmt(fold_mean['rmse_pkd'])} pKd for the fold mean against observed labels). "
+                    "The negative pooled correlations are consistent with this leave-one-out artifact, not "
+                    "evidence of anti-prediction. Proximity in pKd does not imply that Model A passes the separate "
+                    "rank-tracking diagnostic below.")
+    else:
+        baseline = "Pooling predictions from singleton folds can reflect the training-mean artifact rather than compound ranking."
     lines = [
         "# Aurora A ChemBERTa A/B",
         "",
-        "**Primary:** The n=15 primary is underpowered for the 0.3 Δrho bar. A null is uninformative, not evidence of no effect.",
-        "",
         headline,
+        "",
+        baseline,
+        "",
+        "**Sealed primary:** The n=15 panel is underpowered for the 0.3 Δrho bar. A null is uninformative, not evidence of no effect.",
         "",
         "Model A is a ligand-only baseline, matching PPARγ: no geometry columns survive. PXD062561 has 0/24 ligand-resolved HDX coverage. Model B therefore adds only training-fold-standardised log10(cooperativity α); no substitutes or predicted complexes were used. SNS-314 remains included despite its poorly constrained α (only a lower bound >10 could be established).",
         "",
@@ -235,12 +293,15 @@ def results_markdown(results):
         "",
         "The sealed prespec names fold-first execution. The requester asked to finish the primary endpoint before starting the Lake-coupled sensitivity. Only dispatch order across independent endpoint fits changed; the sealed prespec and its SHA256 above are unchanged.",
         "",
+        "The first primary check stopped with an `IndexError`: a local loop variable shadowed the feature lookup in `check.py`. The checker-only correction did not change any fit or computed metric.",
+        "",
         "Metrics use seed-mean out-of-fold predictions (pooled across models trained on different subsets). The RMSE scale is pKd. A fold with one compound has undefined rho; a two-compound rho is an ordering sign, not a stable estimate.",
         "",
         "| Endpoint | Variant | n / folds | ρ A | ρ B | RMSE A | RMSE B | Δρ | 95% paired CI | Undefined bootstrap | Shuffle / Gaussian at or above Δρ | Decision |",
         "|---|---|---:|---:|---:|---:|---:|---:|---|---:|---|---|",
     ]
-    names = {"primary": "Independent", "coupled": "Lake coupled (sensitivity)"}
+    names = {"primary": "Independent (exploratory grouped)" if exploratory else "Independent",
+             "coupled": "Lake coupled (exploratory grouped)" if exploratory else "Lake coupled (sensitivity)"}
     for label, entry in results["labels"].items():
         for variant, cell in entry["variants"].items():
             a, b = (cell["arms"][arm]["pooled"] for arm in ARMS)
@@ -288,8 +349,15 @@ def results_markdown(results):
     lines += ["", f"## Scaffold membership ({results['scaffold_count']} total typed scaffolds)", "",
               "| Fold | Primary members | Coupled members |", "|---|---|---|"]
     for fold in results["scaffolds"]:
-        primary, coupled = ("; ".join(fold["members"][label]) or "—" for label in LABELS)
+        primary, coupled = ("; ".join(fold["members"].get(label, [])) or "—" for label in LABELS)
         lines.append(f"| {fold['id']} | {primary} | {coupled} |")
+    if exploratory:
+        lines += ["", "## Grouped fold membership", "",
+                  "| Fold | Typed scaffold IDs | Held-out compounds |", "|---|---|---|"]
+        for fold in results["grouped_folds"]:
+            groups = ", ".join(fold["scaffold_ids"])
+            members = "; ".join(next(iter(fold["members"].values())))
+            lines.append(f"| {fold['id']} | {groups} | {members} |")
     for label, entry in results["labels"].items():
         for variant, cell in entry["variants"].items():
             lines += ["", f"## Per-fold: {names[label]}, {variant}", "",
@@ -301,6 +369,12 @@ def results_markdown(results):
                 lines.append(f"| {a['fold']} | {a['n']} | {fmt(a['spearman'])} | {fmt(b['spearman'])} | "
                              f"{fmt(a['rmse_pkd'])} | {fmt(b['rmse_pkd'])} | {fmt(diag['prediction_sd_pkd'])} | "
                              f"{fmt(diag['label_sd_pkd'])} | {fmt(diag['sd_ratio'])} |")
+    if "exploratory_grouped" in results:
+        for label, sensitivity in results["exploratory_grouped"].items():
+            title = "independent primary" if label == "primary" else "circular Lake-coupled"
+            lines += ["", f"## Post-hoc exploratory grouped-scaffold sensitivity: {title}", ""]
+            lines += [f"#{line}" if line.startswith("## ") else line
+                      for line in results_markdown(sensitivity).splitlines()[2:]]
     return "\n".join(lines) + "\n"
 
 

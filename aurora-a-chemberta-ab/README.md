@@ -26,9 +26,18 @@ for endpoint in primary coupled; do
   python scripts/evaluate.py --label "$endpoint" || exit 1
   python scripts/check.py --label "$endpoint" || exit 1
 done
+for grouped in 1 coupled; do
+  (
+    export AURORA_GROUPED="$grouped"
+    python scripts/prepare.py && python scripts/train.py &&
+      python scripts/evaluate.py && python scripts/check.py
+  ) || exit 1
+done
 python scripts/train.py       # Assembles existing fits after both endpoint runs.
 python scripts/evaluate.py   # Writes results/results.md and results/metrics.json.
 python scripts/check.py
 ```
 
 The production run used endpoint-first dispatch at the requester’s direction; the sealed prespec remains unedited. The tracked tables suffice to rerun the experiment. The published run’s artifact hashes refer to its original 39-file audit; the public subset has its own manifest, so the source-manifest and dependent artifact hashes differ on a rerun. No omitted audit download is a model input.
+
+The post-hoc grouped sensitivities use [three five-compound folds for the independent endpoint](EXPLORATORY.md) and [four six-compound folds for the circular Lake endpoint](EXPLORATORY-LAKE.md), with typed scaffold groups kept intact. Grouped checkpoints and reports are kept separately; the combined report includes each grouped result only after its checks pass.

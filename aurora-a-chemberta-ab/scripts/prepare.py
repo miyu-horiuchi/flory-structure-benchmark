@@ -6,7 +6,10 @@ from collections import defaultdict
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
-from common import DATA, LABELS, ROOT, RUN, prespec_sha, read_json, sha256, verify_manifest, write_json
+from common import (
+    DATA, GROUPED_LABEL, GROUPED_PLANS, LABELS, RESULTS, ROOT, RUN, prespec_sha, read_json,
+    sha256, verify_manifest, write_json,
+)
 
 
 def rows(file):
@@ -38,6 +41,20 @@ def pkd(raw):
     value = float(raw)
     assert math.isfinite(value) and value > 0
     return 9 - math.log10(value)
+
+
+def grouped_folds(scaffolds, label):
+    count, size = (3, 5) if label == "primary" else (4, 6)
+    folds = [{"id": f"G{i:02}", "scaffold_ids": [], "members": {label: []}} for i in range(1, count + 1)]
+    eligible = [scaffold for scaffold in scaffolds if scaffold["members"][label]]
+    for scaffold in sorted(eligible, key=lambda s: (-len(s["members"][label]), s["scaffold"])):
+        fold = min(folds, key=lambda f: (len(f["members"][label]), f["id"]))
+        fold["scaffold_ids"].append(scaffold["id"])
+        fold["members"][label].extend(scaffold["members"][label])
+    for fold in folds:
+        fold["members"][label].sort()
+        assert len(fold["members"][label]) == size
+    return folds, eligible
 
 
 def prepare():
@@ -79,15 +96,26 @@ def prepare():
         members = "; ".join(fold["members"]["coupled"])
         primary = "yes" if fold["members"]["primary"] else "no"
         assert f"| {fold['id']} | {members} | {primary} |" in spec
-    return {
+    data = {
         "prespec_sha256": seal, "source_manifest_sha256": sha256(manifest), "source_sha256": source_hashes,
         "compounds": compounds, "labels": labels, "folds": folds, "dynamics_columns": ["log10_alpha"],
         "geometry_columns": [],
     }
+    if GROUPED_LABEL:
+        data["folds"], data["scaffolds"] = grouped_folds(folds, GROUPED_LABEL)
+        data["labels"] = {GROUPED_LABEL: labels[GROUPED_LABEL]}
+        data["exploratory"] = {
+            "added_utc": "2026-11-23", "post_hoc": True, "plan_sha256": sha256(GROUPED_PLANS[GROUPED_LABEL]),
+            "assignment": "Decreasing scaffold size, then canonical scaffold SMILES; assign intact to least-loaded fold, breaking ties by fold ID.",
+        }
+    return data
 
 
 if __name__ == "__main__":
     data = prepare()
+    if GROUPED_LABEL:
+        RUN.mkdir(parents=True, exist_ok=True)
+        RESULTS.mkdir(parents=True, exist_ok=True)
     write_json(RUN / "prepared.json", data)
     for label, values in data["labels"].items():
         print(f"{label}: n={len(values)}; folds={sum(bool(f['members'][label]) for f in data['folds'])}")
