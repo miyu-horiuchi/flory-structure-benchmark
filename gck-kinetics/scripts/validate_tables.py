@@ -31,14 +31,14 @@ def main():
     assert len(observations) == 28 and {r["compound_key"] for r in observations} == set(found)
     assert sum(r["source_doi_or_patent"] == MOLLICA for r in observations) == 7
     potency = csv_read("gck_potency_all.csv")
-    assert len(potency) == 2953
+    assert len(potency) == 2943
     assert not any(r["smiles"] for r in potency if r["compound_id"] in ("mollica:6", "mollica:7"))
     assert len(csv_read("gck_kinetics_candidates.csv")) == 2
     assert len(json_read("chembl_gck_activities.json")) == 3222
     bindingdb = csv_read("bindingdb_gck_activities.csv")
     assert len(bindingdb) == 1484
     assert all(not r["kon (M-1-s-1)"].strip() and not r["koff (s-1)"].strip() for r in bindingdb)
-    print("Validated 22 joined samples, 28 kinetic observations, 2 exclusions and 2,953 potency records")
+    print("Validated 22 joined samples, 28 kinetic observations, 2 exclusions and 2,943 potency records")
 
 
 if __name__ == "__main__":

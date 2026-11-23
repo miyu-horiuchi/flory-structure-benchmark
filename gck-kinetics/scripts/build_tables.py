@@ -224,8 +224,19 @@ def build_kinetics(activities, sources):
 
 def potency_rows(activities, supplemental, observations):
     accepted = {"EC50", "AC50", "SC1.5", "Kd", "Ki", "IC50"}
-    rows = [chem_potency(a) for a in activities if a["standard_type"] in accepted
-            and a["standard_value"] is not None]
+    rows = []
+    excluded_measurements = defaultdict(set)
+    for a in activities:
+        if a["standard_type"] not in accepted or a["standard_value"] is None:
+            continue
+        if re.search(r"\b(?:MBP|myelin basic protein) as substrate\b",
+                     a["assay_description"] or "", re.IGNORECASE):
+            if a["pubmed_id"] and a["standard_units"] == "nM":
+                key = (str(a["pubmed_id"]), a["molecule_chembl_id"], a["standard_type"],
+                       a["standard_relation"])
+                excluded_measurements[key].add(number(a["standard_value"]))
+            continue
+        rows.append(chem_potency(a))
     baseline = {r["record_id"]: r for r in observations if r["source_doi_or_patent"] == BORZILLERI}
     mollica = {r["record_id"]: r for r in observations if r["source_doi_or_patent"] == MOLLICA}
     activities_by_id = {a["activity_id"]: a for a in activities}
@@ -247,16 +258,25 @@ def potency_rows(activities, supplemental, observations):
             if not raw:
                 continue
             match = re.fullmatch(r"([<>=~≤≥]*)(.*)", raw)
+            relation, value = match[1] or "=", match[2].strip()
+            if a["Curation/DataSource"] == "ChEMBL" and a["PMID"]:
+                ligand = a["ChEMBL ID of Ligand"] or a["BindingDB Ligand Name"].split("::", 1)[0]
+                excluded_values = excluded_measurements.get((a["PMID"], ligand, kind, relation))
+                if excluded_values:
+                    measured = number(value)
+                    if measured in excluded_values or (value.isdigit() and len(excluded_values) == 1
+                                                       and round(next(iter(excluded_values))) == measured):
+                        continue
             ph, temp = a["pH"].strip(), a["Temp (C)"].strip()
             conditions = "; ".join(x for x in [f"pH {ph}" if ph else "",
                                               f"{temp} °C" if temp else "",
                                               "glucose concentration not available in TSV"] if x)
             monomer = "BDBM" + a["BindingDB MonomerID"]
             rows.append(format_potency(a["BindingDB Ligand Name"] or monomer, a["Ligand SMILES"],
-                                       kind, match[2].strip(), "nM", conditions,
+                                       kind, value, "nM", conditions,
                                        a["Article DOI"] or a["Patent Number"] or a["BindingDB Entry DOI"],
                                        "bindingdb", a["BindingDB Reactant_set_id"], monomer,
-                                       match[1] or "=", "BindingDB source SMILES; not recanonicalized"))
+                                       relation, "BindingDB source SMILES; not recanonicalized"))
     for example, value in ((1, "3.6"), (5, "0.074"), (8, "0.16"), (17, "0.35"), (18, "0.43")):
         rows.append(format_potency(
             f"US8492405B2 Example {example}", "", "EC50", value, "µM",
