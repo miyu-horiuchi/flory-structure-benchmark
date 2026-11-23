@@ -1,0 +1,28 @@
+comp_id,name,ligand_role,smiles,inchikey,pdb_ids,human_gck_pdb_ids,human_gck_entry_count
+0H4,(2S)-3-cyclopentyl-N-(5-methylpyridin-2-yl)-2-[2-oxo-4-(trifluoromethyl)pyridin-1(2H)-yl]propanamide,activator,Cc1ccc(nc1)NC(=O)[C@H](CC2CCCC2)N3C=CC(=CC3=O)C(F)(F)F,QRULBTPYHROTAY-INIZCTEOSA-N,3VEV,3VEV,1
+0H5,6-methoxy-N-(1-methyl-1H-pyrazol-3-yl)quinazolin-4-amine,putative inhibitor (PDB deposition; functional assay unverified),Cn1ccc(n1)Nc2c3cc(ccc3ncn2)OC,BXVGMIRCZUTGFD-UHFFFAOYSA-N,3VEY,3VEY,1
+0H6,6-({(2S)-3-cyclopentyl-2-[4-(trifluoromethyl)-1H-imidazol-1-yl]propanoyl}amino)pyridine-3-carboxylic acid,activator,c1cc(ncc1C(=O)O)NC(=O)[C@H](CC2CCCC2)n3cc(nc3)C(F)(F)F,GKMLFBRLRVQVJO-ZDUSSCGKSA-N,3VF6,3VF6,1
+1FW,"(2S)-3-cyclohexyl-2-(6-fluoro-4-oxoquinazolin-3(4H)-yl)-N-(1,3-thiazol-2-yl)propanamide",activator,c1cc2c(cc1F)C(=O)N(C=N2)[C@@H](CC3CCCCC3)C(=O)Nc4nccs4,HETBALZVBPDEQB-KRWDZBQOSA-N,4ISE,4ISE,1
+1FX,"(2S)-3-cyclohexyl-2-(6-fluoro-2,4-dioxo-1,4-dihydroquinazolin-3(2H)-yl)-N-(1,3-thiazol-2-yl)propanamide",activator,c1cc2c(cc1F)C(=O)N(C(=O)N2)[C@@H](CC3CCCCC3)C(=O)Nc4nccs4,FWNYYSSFAUKKJU-INIZCTEOSA-N,4ISF,4ISF,1
+1FY,"(2S)-3-cyclohexyl-2-[4-(methylsulfonyl)-2-oxopiperazin-1-yl]-N-(1,3-thiazol-2-yl)propanamide",activator,CS(=O)(=O)N1CCN(C(=O)C1)[C@@H](CC2CCCCC2)C(=O)Nc3nccs3,MCVZXAIMSDHSPP-AWEZNQCLSA-N,4ISG,4ISG,1
+1J9,"(2S)-2-{[1-(2-chlorophenyl)-1H-pyrazolo[3,4-d]pyrimidin-4-yl]oxy}-N-(5-chloropyridin-2-yl)-3-(2-hydroxyethoxy)propanamide",activator,c1ccc(c(c1)n2c3c(cn2)c(ncn3)O[C@@H](COCCO)C(=O)Nc4ccc(cn4)Cl)Cl,KTWRHJPPIZQGRW-KRWDZBQOSA-N,4IWV,4IWV,1
+1JD,"(2S)-2-{[1-(3-chloropyridin-2-yl)-1H-pyrazolo[3,4-d]pyrimidin-4-yl]oxy}-N-(5-methylpyridin-2-yl)-3-(propan-2-yloxy)propanamide",activator,Cc1ccc(nc1)NC(=O)[C@H](COC(C)C)Oc2c3cnn(c3ncn2)c4c(cccn4)Cl,AAGISEXHOPCAHZ-KRWDZBQOSA-N,4IXC,4IXC,1
+2N8,(2R)-2-[3-chloro-4-(methylsulfonyl)phenyl]-3-[(1R)-3-oxocyclopentyl]-N-(pyrazin-2-yl)propanamide,activator,CS(=O)(=O)c1ccc(cc1Cl)[C@@H](C[C@H]2CCC(=O)C2)C(=O)Nc3cnccn3,XEANIURBPHCHMG-SWLSCSKDSA-N,4NO7,4NO7,1
+3LZ,1-{3-[(2-ethylpyridin-3-yl)oxy]-5-(pyridin-2-ylsulfanyl)pyridin-2-yl}-3-methylurea,activator,CCc1c(cccn1)Oc2cc(cnc2NC(=O)NC)Sc3ccccn3,PIGWQTQWPKNWHF-UHFFFAOYSA-N,4RCH,4RCH,1
+4DC,"(2R)-3-cyclopentyl-2-[4-(methylsulfonyl)phenyl]-N-(1,3-thiazol-2-yl)propanamide",activator,CS(=O)(=O)c1ccc(cc1)[C@@H](CC2CCCC2)C(=O)Nc3nccs3,NEQSWPCDHDQINX-MRXNPFEDSA-N,4DCH,4DCH,1
+8WJ,"(2S)-3-cyclohexyl-2-[4-(cyclopentylsulfonyl)-2-oxopyridin-1(2H)-yl]-N-(1,3-thiazol-2-yl)propanamide",activator,c1csc(n1)NC(=O)[C@H](CC2CCCCC2)N3C=CC(=CC3=O)S(=O)(=O)C4CCCC4,AIIAMUOQMJYEJH-IBGZPJMESA-N,5V4X,5V4X,1
+8WM,"(2S)-2-[4-(cyclopropylsulfonyl)-1H-indazol-1-yl]-N-(5-fluoro-1,3-thiazol-2-yl)-3-(oxan-4-yl)propanamide",activator,c1cc2c(cnn2[C@@H](CC3CCOCC3)C(=O)Nc4ncc(s4)F)c(c1)S(=O)(=O)C5CC5,VFUKAAVEACENGY-KRWDZBQOSA-N,5V4W,5V4W,1
+926,6-{3-[(1-methyl-1H-imidazol-2-yl)sulfanyl]phenyl}pyridin-2(1H)-one,activator,Cn1ccnc1Sc2cccc(c2)C3=CC=CC(=O)N3,YYWBGPHQPMDZEM-UHFFFAOYSA-N,4L3Q,4L3Q,1
+AJB,"2-amino-N-(4-methyl-1,3-thiazol-2-yl)-5-[(4-methyl-4H-1,2,4-triazol-3-yl)sulfanyl]benzamide",activator,Cc1csc(n1)NC(=O)c2cc(ccc2N)Sc3nncn3C,JEBOJMQHVUEKBE-UHFFFAOYSA-N,3FR0,3FR0,1
+AJI,"3-[(4-fluorophenyl)sulfanyl]-N-(4-methyl-1,3-thiazol-2-yl)-6-[(4-methyl-4H-1,2,4-triazol-3-yl)sulfanyl]pyridine-2-carboxamide",activator,Cc1csc(n1)NC(=O)c2c(ccc(n2)Sc3nncn3C)Sc4ccc(cc4)F,SJTQKYKXCYVFHX-UHFFFAOYSA-N,3A0I,3A0I,1
+B84,"(2R)-3-cyclopentyl-N-(5-methoxy[1,3]thiazolo[5,4-b]pyridin-2-yl)-2-{4-[(4-methylpiperazin-1-yl)sulfonyl]phenyl}propanamide",activator,CN1CCN(CC1)S(=O)(=O)c2ccc(cc2)[C@@H](CC3CCCC3)C(=O)Nc4nc5ccc(nc5s4)OC,GMGMDWSPSKXMJH-OAQYLSRUSA-N,3IMX,3IMX,1
+G1S,diethyl {[3-(3-{[5-(azetidine-1-carbonyl)pyrazin-2-yl]oxy}-5-[(propan-2-yl)oxy]benzamido)-1H-pyrazol-1-yl]methyl}phosphonate,activator,CCOP(=O)(Cn1ccc(n1)NC(=O)c2cc(cc(c2)OC(C)C)Oc3cnc(cn3)C(=O)N4CCC4)OCC,OYUDYQMFVRHPIY-UHFFFAOYSA-N,7T79,7T79,1
+G2T,"diethyl {[2-(3-[4-(methanesulfonyl)phenoxy]-5-{[(2S)-1-methoxypropan-2-yl]oxy}benzamido)-1,3-thiazol-4-yl]methyl}phosphonate",activator,CCOP(=O)(Cc1csc(n1)NC(=O)c2cc(cc(c2)O[C@@H](C)COC)Oc3ccc(cc3)S(=O)(=O)C)OCC,OQUMCVQSAWPKMT-SFHVURJKSA-N,7T78,7T78,1
+HKG,"1-{4-[5-({3-[(2-methylpyridin-3-yl)oxy]-5-[(pyridin-2-yl)sulfanyl]pyridin-2-yl}amino)-1,2,4-thiadiazol-3-yl]piperidin-1 -yl}ethan-1-one",activator,Cc1c(cccn1)Oc2cc(cnc2Nc3nc(ns3)C4CCN(CC4)C(=O)C)Sc5ccccn5,WITGITFYEMHCEZ-UHFFFAOYSA-N,6E0I,6E0I,1
+HKM,"2-({2-[(4-methyl-1,3-thiazol-2-yl)amino]pyridin-3-yl}oxy)benzonitrile",activator,Cc1csc(n1)Nc2c(cccn2)Oc3ccccc3C#N,KPJJEXKLZAXHEE-UHFFFAOYSA-N,6E0E,6E0E,1
+LOI,"2-(methylamino)-N-(4-methyl-1,3-thiazol-2-yl)-5-[(4-methyl-4H-1,2,4-triazol-3-yl)sulfanyl]benzamide",activator,Cc1csc(n1)NC(=O)c2cc(ccc2NC)Sc3nncn3C,XRJAKERBMMBUGR-UHFFFAOYSA-N,3GOI,3GOI,1
+MRK,"2-AMINO-4-FLUORO-5-[(1-METHYL-1H-IMIDAZOL-2-YL)SULFANYL]-N-(1,3-THIAZOL-2-YL)BENZAMIDE",activator,Cn1ccnc1Sc2cc(c(cc2F)N)C(=O)Nc3nccs3,YUCYMQBDBXVNCE-UHFFFAOYSA-N,1V4S;3F9M;3ID8,1V4S;3F9M;3ID8,3
+S41,"N,N-dimethyl-5-({2-methyl-6-[(5-methylpyrazin-2-yl)carbamoyl]-1-benzofuran-4-yl}oxy)pyrimidine-2-carboxamide",activator,Cc1cc2c(o1)cc(cc2Oc3cnc(nc3)C(=O)N(C)C)C(=O)Nc4cnc(cn4)C,MASKQITXHVYVFL-UHFFFAOYSA-N,3S41;4DHY,3S41;4DHY,2
+TK1,"1-({5-[4-(methylsulfonyl)phenoxy]-2-pyridin-2-yl-1H-benzimidazol-6-yl}methyl)pyrrolidine-2,5-dione",activator,CS(=O)(=O)c1ccc(cc1)Oc2cc3c(cc2CN4C(=O)CCC4=O)[nH]c(n3)c5ccccn5,IPZLCOKXDRIZBC-UHFFFAOYSA-N,3H1V,3H1V,1
+VO1,"3-(benzyloxy)-N-(4-methyl-1,3-thiazol-2-yl)pyridin-2-amine",activator,Cc1csc(n1)Nc2c(cccn2)OCc3ccccc3,LPJWCRSWBACCSH-UHFFFAOYSA-N,4MLE,4MLE,1
+VO2,"3-(benzyloxy)-5-methyl-N-(4-methyl-1,3-thiazol-2-yl)pyridin-2-amine",activator,Cc1cc(c(nc1)Nc2nc(cs2)C)OCc3ccccc3,QFOFZZJJRFMLKB-UHFFFAOYSA-N,4MLH,4MLH,1
